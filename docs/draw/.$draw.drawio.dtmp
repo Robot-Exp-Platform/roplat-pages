@@ -1,0 +1,119 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.4 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" border="50" scale="3" compressed="false" locked="false" version="26.0.4">
+  <diagram name="Blank" id="YmL12bMKpDGza6XwsDPr">
+    <mxGraphModel dx="1988" dy="1039" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="1" shadow="0">
+      <root>
+        <mxCell id="X5NqExCQtvZxIxQ7pmgY-0" />
+        <mxCell id="1" parent="X5NqExCQtvZxIxQ7pmgY-0" />
+        <mxCell id="RojM3RQOKE0TcmvbQU_H-11" value="Robot Bus" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="-1320" y="-508" width="583" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="RojM3RQOKE0TcmvbQU_H-12" value="实物机器人" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-1320" y="-459" width="99" height="41" as="geometry" />
+        </mxCell>
+        <mxCell id="RojM3RQOKE0TcmvbQU_H-13" value="仿真机器人" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-1199" y="-459" width="99" height="41" as="geometry" />
+        </mxCell>
+        <mxCell id="RojM3RQOKE0TcmvbQU_H-14" value="虚构机器人" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-1078" y="-459" width="99" height="41" as="geometry" />
+        </mxCell>
+        <mxCell id="RojM3RQOKE0TcmvbQU_H-15" value="工装" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-957" y="-459" width="99" height="41" as="geometry" />
+        </mxCell>
+        <mxCell id="RojM3RQOKE0TcmvbQU_H-16" value="其他可操作实物" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-836" y="-459" width="99" height="41" as="geometry" />
+        </mxCell>
+        <mxCell id="RojM3RQOKE0TcmvbQU_H-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="RojM3RQOKE0TcmvbQU_H-20" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-946.13" y="-348" />
+            </Array>
+            <mxPoint x="-946.13" y="-334.25" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RojM3RQOKE0TcmvbQU_H-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="RojM3RQOKE0TcmvbQU_H-21" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-946.13" y="-307.37" />
+            </Array>
+            <mxPoint x="-946.13" y="-323.62" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RojM3RQOKE0TcmvbQU_H-19" value="Mux" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rotation=-90;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="-1000" y="-336.12" width="87.75" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="RojM3RQOKE0TcmvbQU_H-20" value="sram" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="-894.13" y="-358" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="RojM3RQOKE0TcmvbQU_H-21" value="uart" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="-894.13" y="-317.37" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="yxioz5QFpOCRjbDrVPdh-1" value="实物机器人" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="-1005" y="-240" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="yxioz5QFpOCRjbDrVPdh-2" value="仿真机器人" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="-1005" y="-207" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="yxioz5QFpOCRjbDrVPdh-4" value="虚构机器人" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="-1005" y="-174" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="yxioz5QFpOCRjbDrVPdh-5" value="工装" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="-1291" y="-240" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="yxioz5QFpOCRjbDrVPdh-6" value="动力学建模" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="-1291" y="-207" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="yxioz5QFpOCRjbDrVPdh-7" value="其他外设" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="-1291" y="-174" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="yxioz5QFpOCRjbDrVPdh-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="yxioz5QFpOCRjbDrVPdh-8" target="yxioz5QFpOCRjbDrVPdh-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yxioz5QFpOCRjbDrVPdh-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="yxioz5QFpOCRjbDrVPdh-8" target="yxioz5QFpOCRjbDrVPdh-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yxioz5QFpOCRjbDrVPdh-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="yxioz5QFpOCRjbDrVPdh-8" target="yxioz5QFpOCRjbDrVPdh-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yxioz5QFpOCRjbDrVPdh-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="yxioz5QFpOCRjbDrVPdh-8" target="yxioz5QFpOCRjbDrVPdh-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yxioz5QFpOCRjbDrVPdh-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="yxioz5QFpOCRjbDrVPdh-8" target="yxioz5QFpOCRjbDrVPdh-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yxioz5QFpOCRjbDrVPdh-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="yxioz5QFpOCRjbDrVPdh-8" target="yxioz5QFpOCRjbDrVPdh-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yxioz5QFpOCRjbDrVPdh-8" value="系统内核" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="-1163" y="-228.5" width="93" height="63" as="geometry" />
+        </mxCell>
+        <mxCell id="yxioz5QFpOCRjbDrVPdh-15" value="实物机器人" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="-1003" y="-108" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="yxioz5QFpOCRjbDrVPdh-16" value="仿真机器人" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="-1003" y="-75" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="yxioz5QFpOCRjbDrVPdh-17" value="虚构机器人" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="-1003" y="-42" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="yxioz5QFpOCRjbDrVPdh-18" value="工装" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="-1003" y="-9" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="yxioz5QFpOCRjbDrVPdh-19" value="动力学建模" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="-1003" y="24" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="yxioz5QFpOCRjbDrVPdh-20" value="其他外设" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="-1003" y="57" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="yxioz5QFpOCRjbDrVPdh-21" value="Mux" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rotation=-90;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="-1132.5" y="-26.5" width="184.75" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="yxioz5QFpOCRjbDrVPdh-22" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="yxioz5QFpOCRjbDrVPdh-15">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1070" y="-46" as="sourcePoint" />
+            <mxPoint x="-1020" y="-96" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
