@@ -1,6 +1,15 @@
 # 外设篇 - 指令类型
 
+不同的指令为外部调用，在面向对象的编程中，这通常以继承、虚函数等方法实现。在 rust 并非狭义上定义的面向对象语言，在这里通过 `trait` 来实现.
+
 ## 通用指令
+
+=== "Rust"
+    ```rust
+    pub trait RobotBehavior {
+        ...
+    }
+    ```
 
 - `version`
 
@@ -8,14 +17,17 @@
 
 === "Rust"
     ```rust
-    pub fn version(&self) -> String {
-        self.send("version")
-    }
+    pub fn version(&self) -> String
     ```
 
 === "Python"
     ```python
     def version(self) -> str:
+    ```
+
+=== "C++"
+    ```cpp
+    std::string version()
     ```
 
 - `init`
@@ -29,7 +41,12 @@
 
 === "Python"
     ```python
-    def init(self) -> None:
+    def init(self)
+    ```
+
+=== "C++"
+    ```cpp
+    void init()
     ```
 
 - `shutdown`
@@ -43,7 +60,12 @@
 
 === "Python"
     ```python
-    def shutdown(self) -> None:
+    def shutdown(self)
+    ```
+
+=== "C++"
+    ```cpp
+    void shutdown()
     ```
 
 - `enable`
@@ -57,7 +79,12 @@
 
 === "Python"
     ```python
-    def enable(self) -> None:
+    def enable(self)
+    ```
+
+=== "C++"
+    ```cpp
+    void enable()
     ```
 
 - `disable`
@@ -71,7 +98,12 @@
 
 === "Python"
     ```python
-    def disable(self) -> None:
+    def disable(self)
+    ```
+
+=== "C++"
+    ```cpp
+    void disable()
     ```
 
 - `reset`
@@ -85,7 +117,12 @@
 
 === "Python"
     ```python
-    def reset(self) -> None:
+    def reset(self)
+    ```
+
+=== "C++"
+    ```cpp
+    void reset()
     ```
 
 - `is_moving`
@@ -102,6 +139,11 @@
     def is_moving(self) -> bool:
     ```
 
+=== "C++"
+    ```cpp
+    bool is_moving()
+    ```
+
 - `stop`
 
 停止机器人的运动，停止后的机器人会立即停止运动，本指令并不会自动去使能
@@ -113,7 +155,12 @@
 
 === "Python"
     ```python
-    def stop(self) -> None:
+    def stop(self)
+    ```
+
+=== "C++"
+    ```cpp
+    void stop()
     ```
 
 - `resume`
@@ -127,7 +174,12 @@
 
 === "Python"
     ```python
-    def resume(self) -> None:
+    def resume(self)
+    ```
+
+=== "C++"
+    ```cpp
+    void resume()
     ```
 
 - `emergency_stop`
@@ -141,7 +193,12 @@
 
 === "Python"
     ```python
-    def emergency_stop(self) -> None:
+    def emergency_stop(self)
+    ```
+
+=== "C++"
+    ```cpp
+    void emergency_stop()
     ```
 
 - `clear_emergency_stop`
@@ -153,27 +210,17 @@
 
 === "Python"
     ```python
-    def clear_emergency_stop(self) -> None:
+    def clear_emergency_stop(self)
+    ```
+
+=== "C++"
+    ```cpp
+    void clear_emergency_stop()
     ```
 
 ## 实时指令
 
 实时通信是一种权限态，在此权限态下的通信不会被系统中断，可以通过实时态下实现更快的实时通信，减少通信延迟。
-
-<!-- fn enter_realtime(&mut self, realtime_config: C) -> RobotResult<H>;
-    fn exit_realtime(&mut self) -> RobotResult<()>;
-    fn read_state(&self) -> S;
-    fn quality_of_service(&self) -> f64;
-    fn is_hardware_realtime(&self) -> bool {
-        if cfg!(target_os = "linux") {
-            Path::new("/sys/kernel/realtime").exists()
-        } else if cfg!(target_os = "windows") {
-            true
-        } else {
-            println!("Unknown OS, assuming realtime kernel.");
-            true
-        }
-    } -->
 
 - `enter_realtime`
 
@@ -189,6 +236,11 @@
     def enter_realtime(self, realtime_config: C) -> H:
     ```
 
+=== "C++"
+    ```cpp
+    Handle enter_realtime(Config realtime_config)
+    ```
+
 - `exit_realtime`
 
 退出实时态，退出实时态后的通信会被系统中断
@@ -200,7 +252,12 @@
 
 === "Python"
     ```python
-    def exit_realtime(self) -> None:
+    def exit_realtime(self)
+    ```
+
+=== "C++"
+    ```cpp
+    void exit_realtime()
     ```
 
 - `read_state`
@@ -217,6 +274,11 @@
     def read_state(self) -> S:
     ```
 
+=== "C++"
+    ```cpp
+    State read_state()
+    ```
+
 - `quality_of_service`
 
 获取当前的通信质量，简称为 QoS，通信质量是指通信的稳定性和实时性，通信质量越高，通信的稳定性和实时性越好。存在多种通信策略。
@@ -231,6 +293,11 @@
     def quality_of_service(self) -> f64:
     ```
 
+=== "C++"
+    ```cpp
+    double quality_of_service()
+    ```
+
 - `is_hardware_realtime`
 
 判断系统是否具备实时内核，实时内核是指具备实时通信能力的操作系统内核。
@@ -243,6 +310,11 @@
 === "Python"
     ```python
     def is_hardware_realtime(self) -> bool:
+    ```
+
+=== "C++"
+    ```cpp
+    bool is_hardware_realtime()
     ```
 
 ## 机械臂指令
@@ -281,6 +353,29 @@
     unimplemented
     ```
 
+=== "C++"
+    ```cpp
+    Class MotionBase{
+        ...
+    }
+    Class Joint: public MotionBase{
+        ...
+    }
+    Class CartesianQuat: public MotionBase{
+        ...
+    }
+    Class CartesianEuler: public MotionBase{
+        ...
+    }
+    Class Position: public MotionBase{
+        ...
+    }
+    Class PositionVel: public MotionBase{
+        ...
+    }
+    void move_to(MotionType target)
+    ```
+
 - `move_to_async`
 
 机械臂异步移动到目标位置，目标位置是一个枚举类型。该指令运行时不会持续阻塞，但是此时发送其他运动指令会导致运动指令冲突。
@@ -293,6 +388,11 @@
 === "Python"
     ```python
     unimplemented
+    ```
+
+=== "C++"
+    ```cpp
+    void move_to_async(MotionType target)
     ```
 
 - `move_rel`
@@ -309,6 +409,11 @@
     unimplemented
     ```
 
+=== "C++"
+    ```cpp
+    void move_rel(MotionType rel)
+    ```
+
 - `move_rel_async`
 
 机械臂异步相对移动，相对位置是一个枚举类型。
@@ -321,6 +426,11 @@
 === "Python"
     ```python
     unimplemented
+    ```
+
+=== "C++"
+    ```cpp
+    void move_rel_async(MotionType rel)
     ```
 
 - `move_path`
@@ -337,6 +447,11 @@
     unimplemented
     ```
 
+=== "C++"
+    ```cpp
+    void move_path(std::vector<MotionType> path)
+    ```
+
 - `move_path_from_file`
 
 机械臂沿着给定文件中的轨迹移动，文件中的轨迹是一个枚举类型的数组。
@@ -349,6 +464,11 @@
 === "Python"
     ```python
     unimplemented
+    ```
+
+=== "C++"
+    ```cpp
+    void move_path_from_file(std::string path)
     ```
 
 - `control_with`
@@ -367,4 +487,9 @@
 === "Python"
     ```python
     unimplemented
+    ```
+
+=== "C++"
+    ```cpp
+    void control_with(ControlType control)
     ```

@@ -1,5 +1,5 @@
 site_name: Roplat Documentation
-site_url: https://mydomain.org/mysite
+site_url: https://mydomain.org/roplat
 
 theme:
   name: material
