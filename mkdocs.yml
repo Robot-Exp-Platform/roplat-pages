@@ -1,7 +1,8 @@
 site_name: Roplat Documentation
-site_url: https://mydomain.org/roplat
 
 theme:
+  logo: asserts/icon.png
+  favicon: asserts/icon.png
   name: material
   features:
     - content.code.copy
