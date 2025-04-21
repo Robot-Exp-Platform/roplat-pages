@@ -4,214 +4,91 @@
 
 大族机器人驱动是经典的复杂指令驱动，其中包含了诸多功能。驱动的开发人员似乎不是同一人并且没有提前约定好接口规范，导致驱动的接口风格并不是很统一，公司提供的样例也并非全面，这给使用带来了一些困难。
 
-为了将 HANS 机器人也纳入 Roplat 的处理范围，我们完全重构了 HANS 机器人的驱动，使其接口风格与其他驱动保持一致。
+出于统一化驱动接口及通用机器人驱动的实例化，我们完全重构了 HANS 机器人的驱动，使其接口风格与其他驱动保持一致。
+
+本库是[通用机器人驱动计划](https://github.com/Robot-Exp-Platform/robot_behavior)中的一员！我们立志于为更多的机器人平台提供 Rust 语言的驱动支持！**统一不同型号的机器人驱动接口，降低机器人学习成本，提供更高效的机器人控制方案！**
 
 ## Interface
 
-### API(Application Programming Interface ,应用程序接口)
+### server(驱动服务器)
 
-各种语言的 `API` 尽量以面向对象的形式提供一个可供调用的对象，这使得对于机器人的操作以对象的方法形式存在，
+出于被其他服务调用的需求，我们提供一个可执行文件，用于接受 `tcp` 指令并驱动机器人执行
 
-要使用各语言的 `API` 需要添加依赖，依赖的添加方式随您当前正在使用的语言有关
+#### 使用方法
 
-=== "Rust"
-    打开项目根目录中的 `cargo.toml`, 在 `[dependencies]` 中添加依赖 `"libhans" = "0.1.0"`
+最新的下载地址为 [libhans_server](https://github.com/Robot-Exp-Platform/libhans-rs/releases)
 
-=== "Python"
-    在命令行中运行 `pip install libhans`, 在需要使用的脚本文件中使用`import libhans.libhans`即可
+下载完成后将得到一个 `libhans.exe` 文件，在当前文件目录命令行中运行 `libhans.exe ${PORT}` 即可启动驱动服务器，其中 `${PORT}` 为服务器监听端口号，其他服务访问时应使用 `tcp` 连接该端口。(注意 `${PORT}` 并非机器人本身的ip和端口号，自行定义即可)
 
-和其他机器人的驱动一致，大族机器人驱动的对外接口也来自于一个 `Rust` 特征，这对应其他面向语言中一个不具备数据元素的基类,具体的方法解释见[机械臂指令](../02%20instruct.md)。方法声明如下：
+当驱动多台大族机器人时，应当首先使用示教器右上角三横线按钮，找到 `ip` 并将**多台机器人和驱动服务器所在电脑均设置至同一网段**，设置完成后先尝试 `ping` 机器人 `ip` 是否可达，若可达则可以使用驱动服务器进行控制。多台机器人的控制需要使用多个驱动服务器，使用命令行多开并监听不同端口即可。
 
-=== "Rust"
-    ```rust
+#### 指令类型
 
-    pub trait RobotBehavior {
-        fn version(&self) -> String;
-        fn init(&mut self) -> RobotResult<()>;
-        fn shutdown(&mut self) -> RobotResult<()>;
-        fn enable(&mut self) -> RobotResult<()>;
-        fn disable(&mut self) -> RobotResult<()>;
-        fn reset(&mut self) -> RobotResult<()>;
-        fn is_moving(&mut self) -> bool;
-        fn stop(&mut self) -> RobotResult<()>;
-        fn resume(&mut self) -> RobotResult<()>;
-        fn emergency_stop(&mut self) -> RobotResult<()>;
-        fn clear_emergency_stop(&mut self) -> RobotResult<()>;
-    }
+所有指令均采用 `json` 格式，具体的指令与对应的通讯内容如下：
 
-    pub enum MotionType<const N: usize> {
-        Joint([f64; N]),
-        JointVel([f64; N]),
-        CartesianQuat(na::Isometry3<f64>),
-        CartesianEuler([f64; 6]),
-        CartesianVel([f64; 6]),
-        Position([f64; 3]),
-        PositionVel([f64; 3]),
-    }
+- Connect | 发送 `{"Connect":{"ip":"192.168.0.2"}}` | 返回
 
-    pub enum ControlType<const N: usize> {
-        Zero,
-        Force([f64; N]),
-    }
+> 注意：`ip` 为机器人的 `ip` 地址，**本指令应当在其他所有指令前执行，否则服务器将无法连接到机器人**
 
-    pub trait ArmBehavior {
-        fn move_to(&mut self, target: MotionType<N>) -> RobotResult<()>;
-        fn move_to_async(&mut self, target: MotionType<N>) -> RobotResult<()>;
-        fn move_rel(&mut self, rel: MotionType<N>) -> RobotResult<()>;
-        fn move_rel_async(&mut self, rel: MotionType<N>) -> RobotResult<()>;
-        fn move_path(&mut self, path: Vec<MotionType<N>>) -> RobotResult<()>;
-        fn move_path_from_file(&mut self, path: &str) -> RobotResult<()>;
-        fn control_with(&mut self, control: ControlType<N>) -> RobotResult<()>;
-    }
-    ```
+- Enable | 发送 `"Enable"` | 返回
 
-=== "Python"
-    ```python
+> 注意：`Enable` 指令会使能机器人，**请确保机器人处于安全状态**,当机器人报错时可以通过使能机器人来重置错误状态
 
-    class RobotBehavior {
-        def version(self) -> str:
-        def init(self):
-        def shutdown(self):
-        def enable(self):
-        def diasble(self):
-        def reset(self):
-        def is_moving(self) -> bool:
-        def stop(self):
-        def resume(self):
-        def emergency_stop(self):
-        def clear_emergency_stop(self):
-    }
+- Disable | 发送 `"Disable"` | 返回
+- Reset | 发送 `"Reset"` | 返回
+- IsMoving | 发送 `"IsMoving"` | 返回 `true`
 
-    class MotionType {
-        type
-        data: List(double)
-    }
+> 注意：`IsMoving` 指令会返回机器人是否正在运动，返回值为 `true` 或 `false`
 
-    class ConteolType {
-        type
-        data: List(double)
-    }
+- Stop | 发送 `"Stop"` | 返回
+- Pause | 发送 `"Pause"` | 返回
+- Resume | 发送 `"Resume"` | 返回
+- ArmState | 发送 `"ArmState"` | 返回 `ArmState { joint: Some([0.0, 0.0, 0.0, 0.0, 0.0, 0.0]), joint_vel: Some([0.0, 0.0, 0.0, 0.0, 0.0, 0.0]), joint_acc: Some([0.0, 0.0, 0.0, 0.0, 0.0, 0.0]), tau: Some([0.0, 0.0, 0.0, 0.0, 0.0, 0.0]), pose_o_to_ee: Some(Euler([0,0,0,0,0,0])), pose_f_to_ee: Some(Euler([0,0,0,0,0,0])), pose_ee_to_k: Some(Euler([0,0,0,0,0,0])), cartesian_vel: Some([0.0, 0.0, 0.0, 0.0, 0.0, 0.0]), load: Some(LoadState { m: 0.0, x: [0.0, 0.0, 0.0], i: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] }) }`
 
-    class ArmBehavior {
-        def move_to(self, target: MotionType):
-        def move_to_async(self, target: MotionType):
-        def move_rel(self, target: MotionType):
-        def move_rel_async(self, target: MotionType):
-        def move_path(self, path: List(MotionType)):
-        def move_path_from_file(self, path: String):
-        def control_with(self, control: ControlType)
-    }
-    ```
+> 注意：`ArmState` 指令会返回机器人的状态信息，返回值为 `ArmState` 结构体，包含了机器人的关节角度、关节速度、关节加速度、关节电流、末端执行器的位姿、末端执行器的速度等信息, 大族机器人并不包含其中所有的字段，不包含的字段会将 Some(...) 替换为 None
 
-除去机器人和机械臂通用的指令形式之外，还提供了一些更加常用了封装接口，如
+- SetLoad | 发送 `{"SetLoad":{"m":1.0,"x":[0.0,0.0,0.0]}}` | 返回
 
-=== "Rust"
-    ```rust
+> 注意：`SetLoad` 指令会设置机器人的负载，返回值为 `true` 或 `false`
 
-    impl HansRobot {
-        pub fn connect(&mut self, ip: &str, port: u16);
-        pub fn disconnect(&mut self);
-        pub fn move_joint(&mut self, joints: [f64; HANS_DOF]) -> HansResult<()>;
-        pub fn move_joint_rel(&mut self, joints: [f64; HANS_DOF]) -> HansResult<()>;
-        pub fn move_linear_with_quaternion(&mut self, position: [f64; 3], quaternion: [f64; 4]) -> HansResult<()>
-        pub fn move_linear_with_euler(&mut self, pose: [f64; 6]) -> HansResult<()>
-        pub fn move_linear_with_euler_rel(&mut self, pose: [f64; 6]) -> HansResult<()>
-    }
-    ```
+- SetSpeed | 发送 `{"SetSpeed":{"speed":1.0}}` | 返回
 
-=== "Python"
-    ```python
+> 注意：`SetSpeed` 指令会设置机器人的速度，大小范围为 `[0.0, 1.0]`
 
-    class HansRobot {
-        def connect(self, ip: str, port: int = 10003) -> None:
-            """连接到机器人
-            Args:
-                ip: 机器人的 IP 地址
-                port: 机器人的端口号（默认 10003）
-            """
+- MoveJoint | 发送 `{"MoveJoint":{"joint":[0.0,0.0,0.0,0.0,0.0,0.0],"speed":1.0}}` | 返回
 
-        def disconnect(self) -> None:
-            """断开与机器人的连接"""
+> 关节运动指令，`joint` 为关节角度，单位为 **角度**, `speed` 为速度
 
-        def move_joint(self, joint: List[float]) -> None:
-            """以关节角度方式移动机器人
-            Args:
-                joint: 关节角度列表（长度必须为 HANS_DOF）
-            """
+- MoveJointRel | 发送 `{"MoveJointRel":{"joint":[1.0,0.0,0.0,0.0,0.0,0.0]}}` | 返回
 
-        def move_joint_rel(self, joint_rel: List[float]) -> None:
-            """以关节角度方式相对移动机器人
-            Args:
-                joint_rel: 相对关节角度列表（长度必须为 HANS_DOF）
-            """
+> 关节相对运动指令，`joint` 为关节角度，单位为 **角度**, 指令中请确保只有一个数不为0，其他指令将被忽略
 
-        def move_joint_path(self, joints: List[List[float]]) -> None:
-            """以关节角度方式移动机器人
-            Args:
-                joints: 关节角度列表
-            """
-        
-        def move_joint_path_from_file(self, path: str) -> None:
-            """从文件中读取关节角度路径并执行
-            Args:
-                path: 文件路径
-            """
+- MoveLinearWithEuler | 发送 `{"MoveLinearWithEuler":{"pose":[0.0,0.0,0.0,0.0,0.0,0.0],"speed":1.0}}` | 返回
 
-        def move_linear_with_euler(self, pose: List[float]) -> None:
-            """以笛卡尔坐标系（欧拉角）移动机器人
-            Args:
-                pose: 位姿列表 [x, y, z, rx, ry, rz]
-            """
+> 笛卡尔坐标系运动指令，`pose` 为末端执行器的位姿，单位为 **mm**，`speed` 为速度
 
-        def move_linear_rel_with_euler(self, pose_rel: List[float]) -> None:
-            """以笛卡尔坐标系（欧拉角）相对移动机器人
-            Args:
-                pose_rel: 相对位姿列表 [dx, dy, dz, drx, dry, drz]
-            """
+- MoveLinearWithEulerRel | 发送 `{"MoveLinearWithEulerRel":{"pose":[1.0,0.0,0.0,0.0,0.0,0.0],"speed":1.0}}` | 返回
 
-        def set_speed(self, speed: float) -> None:
-            """设置运动速度
-            Args:
-                speed: 速度系数（0.0~1.0）
-            """
+> 笛卡尔坐标系相对运动指令，`pose` 为末端执行器的位姿，单位为 **mm**，指令中请确保只有一个数不为0，其他指令将被忽略
 
-        def version(self) -> str:
-            """获取机器人版本信息
-            Returns:
-                版本号字符串
-            """
+- MovePathFromFile | 发送 `{"MovePathFromFile":{"path":"low_traj.json","speed":1.0}}` | 返回
 
-        def init(self) -> None:
-            """初始化机器人"""
+> 路径运动指令，`path` 为路径文件名，`speed` 为速度, 运行时将会读取当前目录下的 `low_traj.json` 文件，文件格式如下
 
-        def shutdown(self) -> None:
-            """关闭机器人"""
-
-        def enable(self) -> None:
-            """使能机器人"""
-
-        def disable(self) -> None:
-            """去使能机器人"""
-
-        def stop(self) -> None:
-            """停止机器人运动"""
-
-        def resume(self) -> None:
-            """恢复机器人运动"""
-
-        def emergency_stop(self) -> None:
-            """紧急停止机器人"""
-
-        def clear_emergency_stop(self) -> None:
-            """清除紧急停止状态"""
-
-        def is_moving(self) -> bool:
-            """检查机器人是否在运动中
-            Returns:
-                bool: 是否在运动状态
-            """
-    }
-    ```
+```json
+[
+  { "Joint": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0] },
+  { "Joint": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0] },
+  { "Joint": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0] },
+  { "Joint": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0] },
+  { "Joint": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0] },
+  { "Joint": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0] },
+  { "Joint": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0] },
+  { "Joint": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0] },
+  { "Joint": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0] },
+  { "Joint": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0] }
+]
+```
 
 ### CLI(Command Line Interface ,命令行接口)
 
