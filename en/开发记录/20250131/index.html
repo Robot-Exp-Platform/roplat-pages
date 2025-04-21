@@ -1,0 +1,2560 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../%E5%A4%96%E8%AE%BE/%E5%A4%96%E8%AE%BE%E9%A9%B1%E5%8A%A8/hans/">
+      
+      
+        <link rel="next" href="../../%E6%96%87%E6%A1%A3/Introduction/">
+      
+      
+      <link rel="icon" href="../../../asserts/icon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+    
+    
+      
+        <title>关于技术路线的探讨 - Roplat Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2afb09e1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../" title="Roplat Documentation" class="md-header__button md-logo" aria-label="Roplat Documentation" data-md-component="logo">
+      
+  <img src="../../../asserts/icon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Roplat Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              关于技术路线的探讨
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/20250131/" hreflang="zh" class="md-select__link">
+              简体中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="Roplat Documentation" class="md-nav__button md-logo" aria-label="Roplat Documentation" data-md-component="logo">
+      
+  <img src="../../../asserts/icon.png" alt="logo">
+
+    </a>
+    Roplat Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RoPlat
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01%20Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Controbuction
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Controbuction
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Controbuction/0%20%E9%A1%B9%E7%9B%AE%E5%85%A5%E9%97%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    项目入门
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--new"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Controbuction/00%20todo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Todo Index
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--new"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Controbuction/%E5%86%85%E6%A0%B8%E7%AF%87-%E4%BB%BB%E5%8A%A1%E7%94%9F%E6%88%90%E5%99%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    内核篇 - 任务生成器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Controbuction/%E5%86%85%E6%A0%B8%E7%AF%87-%E5%85%B6%E4%BB%96%E8%AF%AD%E8%A8%80%E9%80%9A%E8%AE%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    内核篇 - 其他语言通讯
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Controbuction/%E5%86%85%E6%A0%B8%E7%AF%87-%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%BD%E8%B1%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    内核篇 - 机器人抽象
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Controbuction/%E5%86%85%E6%A0%B8%E7%AF%87-%E6%B1%82%E8%A7%A3%E5%99%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    内核篇 - 求解器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Controbuction/%E5%86%85%E6%A0%B8%E7%AF%87-%E8%8A%82%E7%82%B9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    内核篇 - 节点
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Controbuction/%E5%86%85%E6%A0%B8%E7%AF%87-%E8%8A%82%E7%82%B9%E7%BC%96%E8%AF%91%E6%B3%A8%E5%86%8C%E5%99%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    节点篇 - 节点编译注册器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Controbuction/%E5%86%85%E6%A0%B8%E7%AF%87-%E9%80%9A%E7%94%A8%E9%80%9A%E4%BF%A1%E5%86%85%E6%A0%B8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    内核篇 - 通用通信内核
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Controbuction/%E5%89%8D%E7%AB%AF%E7%AF%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    前端篇
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Controbuction/%E5%90%8E%E7%AB%AF%E7%AF%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    后端篇
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Controbuction/%E5%A4%96%E8%AE%BE%E7%AF%87-%E4%BB%BF%E7%9C%9F%E5%99%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    外设篇 - 仿真器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Controbuction/%E5%A4%96%E8%AE%BE%E7%AF%87-%E5%8A%A8%E5%8A%9B%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    外设篇 - 动力学建模
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Controbuction/%E5%A4%96%E8%AE%BE%E7%AF%87-%E5%A4%96%E8%AE%BE%E9%A9%B1%E5%8A%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    外设篇 - 外设驱动
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Controbuction/%E5%A4%96%E8%AE%BE%E7%AF%87-%E6%80%BB%E7%BA%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    外设篇 - 总线
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Controbuction/%E5%A4%96%E8%AE%BE%E7%AF%87-%E6%8C%87%E4%BB%A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    外设篇 - 指令
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Controbuction/%E6%96%87%E6%A1%A3%E7%AF%87-%E8%BF%90%E5%8A%A8%E5%AD%A6%E4%B8%8E%E5%8A%A8%E5%8A%9B%E5%AD%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    文档篇 - 运动学与动力学
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    START
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            START
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../START/00%20Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    快速上手（成为魔法少女的第一步）
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--new"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../START/01%20Rust/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust 快速上手(勇者获得了村好剑)
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--new"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../START/02%20kernel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    内核架构
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--new"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../START/03%20node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    年轻人的第一个节点
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--new"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    内核 日志
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            内核 日志
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%86%85%E6%A0%B8-%E6%97%A5%E5%BF%97/00%20Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    内核 - 日志篇 - 概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    内核 求解器
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            内核 求解器
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%86%85%E6%A0%B8-%E6%B1%82%E8%A7%A3%E5%99%A8/00%20Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    内核 - 求解器篇 - 概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    内核 线程
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            内核 线程
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%86%85%E6%A0%B8-%E7%BA%BF%E7%A8%8B/00%20Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    内核 - 线程篇 - 概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    内核 节点
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            内核 节点
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%86%85%E6%A0%B8-%E8%8A%82%E7%82%B9/00%20Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    内核 - 节点篇 - 概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    内核 通信
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            内核 通信
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%86%85%E6%A0%B8-%E9%80%9A%E4%BF%A1/00%20Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    内核 - 通信篇 - 概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    前端
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            前端
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%89%8D%E7%AB%AF/00%20Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    前端篇 - 概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%89%8D%E7%AB%AF/01%20%E5%89%8D%E7%AB%AF%E5%8A%9F%E8%83%BD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    前端功能
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%89%8D%E7%AB%AF/%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    需求文档 —— 内核包装
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    外设
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            外设
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%96%E8%AE%BE/00%20Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    外设篇 - 概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%96%E8%AE%BE/01%20Bus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    外设篇 - 总线
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%96%E8%AE%BE/02%20instruct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    外设篇 - 指令类型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_4" id="__nav_11_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    仿真器
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_4">
+            <span class="md-nav__icon md-icon"></span>
+            仿真器
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%96%E8%AE%BE/%E4%BB%BF%E7%9C%9F%E5%99%A8/0%20Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    仿真器概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%96%E8%AE%BE/%E4%BB%BF%E7%9C%9F%E5%99%A8/bullet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bullet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%96%E8%AE%BE/%E4%BB%BF%E7%9C%9F%E5%99%A8/oscilloscope/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Oscilloscope
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%96%E8%AE%BE/%E4%BB%BF%E7%9C%9F%E5%99%A8/three_js/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Three js
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%96%E8%AE%BE/%E4%BB%BF%E7%9C%9F%E5%99%A8/webot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Webot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_5" id="__nav_11_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    动力学建模
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_5">
+            <span class="md-nav__icon md-icon"></span>
+            动力学建模
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%96%E8%AE%BE/%E5%8A%A8%E5%8A%9B%E5%AD%A6%E5%BB%BA%E6%A8%A1/0%20Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    动力学建模概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_6" id="__nav_11_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    外设驱动
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_6">
+            <span class="md-nav__icon md-icon"></span>
+            外设驱动
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%96%E8%AE%BE/%E5%A4%96%E8%AE%BE%E9%A9%B1%E5%8A%A8/0%20Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    外设 - 驱动
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%96%E8%AE%BE/%E5%A4%96%E8%AE%BE%E9%A9%B1%E5%8A%A8/franka_gripper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Franka gripper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%96%E8%AE%BE/%E5%A4%96%E8%AE%BE%E9%A9%B1%E5%8A%A8/franka_panda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    外设 - 驱动 - Franka
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%96%E8%AE%BE/%E5%A4%96%E8%AE%BE%E9%A9%B1%E5%8A%A8/hans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    外设 - 驱动 - Hans
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    开发记录
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            开发记录
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    关于技术路线的探讨
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    关于技术路线的探讨
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    文档
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            文档
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%96%87%E6%A1%A3/Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    运动学与动力学
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            运动学与动力学
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%BF%90%E5%8A%A8%E5%AD%A6%E4%B8%8E%E5%8A%A8%E5%8A%9B%E5%AD%A6/00%20Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    运动学与动力学概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%BF%90%E5%8A%A8%E5%AD%A6%E4%B8%8E%E5%8A%A8%E5%8A%9B%E5%AD%A6/%E8%BF%90%E5%8A%A8%E5%AD%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    运动学
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">关于技术路线的探讨</h1>
+<hr />
+<p>现有的机器人操作系统如经典的 ROS 系统，在我看来更像是一个通讯中间件+项目包管理的简单工具包，其余部分都是由机器人工程师去补充完善和现有开源社区的封装好的功能库。我的目标在于降低搭建机器人功能的学习成本并提高系统安全性与效率，受到 Rust 语言设计哲学和pytorch神经网络搭建的启发，我将多机器人的规划、控制等行为理解为多层级的节点，节点是系统逻辑的单元，每个节点具备一定的生命周期，并具有一个或多个机器人的只读引用，通过节点间信道：SegQueue 向下一节点传播当前节点的计算结果或信息。最终获得精简的任务约束指令，通过机器人总线 RobotBus 发送给 实物机器人/仿真机器人/动力学建模/工装等等。越接近物理层的节点应该具有更大的生命周期和权限，当某个节点抛出了错误，实际处理方式实际上是作为下一节点的特权态委托。多个节点与机器人共同完成某个功能的配置被称为任务，任务之间存在依赖关系，暂时的任务描述通过一个任务 json 文件进行。该 任务 json 文件作为系统内核的输入，系统内核会持续接受任务文件并解读其描述，并在线程管理器和内存管理器中创建节点并且搭建节点间通讯</p>
+<hr />
+<p>通过“节点 + 信道 + 任务描述”的方式来构建一套统一的机器人任务管理与执行框架，并且借助 Rust 的强安全特性来提高系统的健壮性和性能。</p>
+<p>从架构层面把“任务描述 → 节点图执行”固化下来</p>
+<p>你可以将节点拓扑的管理和调度做成一个“统一的调度中心（或节点管理器）”，所有节点都向它注册依赖和数据流。
+错误处理方面可引入Supervisor或监控树，不要让下游节点单方面承担所有异常处理逻辑。
+引入更丰富的生命周期与状态机</p>
+<p>让节点从 “创建 → 初始化 → 运行 → 错误 → 退出” 有完整的生命周期变迁，特别是硬件相关节点一旦出错，需要更好的重试、断开和恢复流程。
+数据流 + 事件流并重</p>
+<p>对于周期性数据流使用队列/内存池，对突发事件使用轻量级信号或回调通道，避免关键异常滞留在队列里难以及时处理。
+先聚焦场景，逐步完善</p>
+<p>在“多平台兼容、实时控制、热加载”这几块都想要做得面面俱到，工程复杂度非常高。可以先明确一个典型场景（例如：Linux + x86_64 + 实物机器人）把架构跑通，再依次抽象到其它平台。
+注意API友好度与可维护性</p>
+<p>你希望降低学习成本、让用户更快上手，就需要有一套清晰、稳定的API或SDK。Rust本身门槛就不算低，设计好对外接口和文档，对提升可用性很重要。</p>
+<ol>
+<li>关于节点设计</li>
+<li>目前采用 RwLock 作为读写锁的要求，从而实现存在多个节点可读机器人而只有一个节点可写机器人的设计。如果节点读取的过程非常平凡，同时有些节点需要写入机器人的控制状态，肯恶搞需要更加细粒度的锁或者无锁机制。避免在高并发场景下引发阻塞。</li>
+<li>节点权限设计中，越接近物理层的节点应该具有更大的权限，是否考虑对这些节点做显式的生命周期管理？目前是存在的，我们通过节点行为特征（NodeBehavior）来规范节点行为。不同于 ROS2 中的 CL 状态机设计，我在线程管理器中强行约束的节点的的执行顺序（基于节点的行为特征）初始化 -&gt; 循环运行 -&gt;  销毁。线程管理器通过在每次调用节点行为特征之前使用节点行为特征状态函数来判断当前节点状态并自动推进节点状态。我不确定这是否是一个好的设计，但是这样可以有效减少机器人工程师在编写节点时的思考量，所有节点机器人工程师只需要编写 init/update/destory等节点行为特征函数即可，线程、内存、通讯由系统内核自动管理。当然，这也在一定程度上缩减了节点设计过程中的自由度。</li>
+<li>节点内的执行模型</li>
+<li>流量控制是我尚且正在考虑的一大难题，稍后我们将作为一个独立的问题再次讨论。目前的流量设计实际上与节点的执行频率紧密相关而且与很容易出现堵塞或者缺省的情况。</li>
+<li>实时性也是一个重要的问题，目前通讯实时性可能有所欠缺，一方面在一些场合我需要实时内核来满足强实时的要求，另外一方面我也要照顾一些没有实时内核的设备。</li>
+<li>节点的错误处理</li>
+<li>硬件层的错误处理是一个很困难的问题，我计划将这一部分的保证交给机器人总线（Robot Bus）。RobotBus 不单单负责指令的传递、分发和状态的更新。同时还应该是一个内核到机器人之间的双向保证器，一方面向内核保证机器人持续可用且稳定连接（具体的错误处理尚未考虑），另外一方面向机器人保证内核的指令合法安全。</li>
+<li>对于上层逻辑节点的报错，我考虑在节点之间引入环路，当上层节点报错时，该层节点向旁支发送错误信息，通过临时代理节点完成紧急处理并发送处理结果回本节点。但是这样的处理方案当运行时节点通路不可变时会新增大量备用节点，增大了开销，而在运行中管理节点通路是一件困难的事情，同时也不利于线程和权限管理，我不太想给节点加锁，因为这样会增加系统的复杂度。也会导致某些死锁现象。</li>
+<li>任务定义与依赖</li>
+<li>更加正式的任务依赖图或者执行图应该如何描述？目前我是在json中描述一张有向图来描述节点的依赖关系，通过任务入度决定当前任务是否可以被执行</li>
+<li>关于热加载和动态删减节点，稍后我们作为一个独立的问题再次讨论</li>
+<li>线程和内存管理</li>
+<li>很遗憾，我采用的线程管理方式确实是根据json文件确定节点类型和参数之后就直接生成的，没有采用线程池和异步运行时，这或许是可以被精进的点，稍后我们作为一个独立的问题再次讨论</li>
+<li>在单片机平台中，我计划使用系统时钟戳来代替多线程，尽量减少在单片机中对于标准库的使用。但是我此前并未听闻过 RTOS 或者 无操作系统式的调度架构，希望你能向我介绍和推荐</li>
+<li>内存管理我有考虑过使用内存锁或者内存池来避免过多的内存分配，同时我要求在节点建立时应当通过一个结构体来描述在节点执行过程中需要在 update 中保留的参数，这将在节点开辟时被申请完毕，避免在节点循环过程中频繁的内存分配和释放</li>
+<li>数据流 and 事件驱动</li>
+<li>关于事件触发和事件触发，我们稍后作为一个独立的问题再次讨论</li>
+<li>多平台适配</li>
+<li>由于常见 pc 设备与 单片机等设备差异过大，我计划在单片机上使用一个更加轻量级的内核，改内核与本体具有相同的通讯方法和节点描述方法，但是采用更加符合单片机等设备的触发和内存管理方式。</li>
+<li>总线与外设接口</li>
+<li>这里要说明的是，这里指的 RobotBus 更多的是一种对于机器人任务、指令、约束的协议，而非通讯用网络协议。所以 RobotBus 与工业标准的通信协议并不冲突，核心在于通讯内容中包含的约束和指令的描述方式。</li>
+<li>安全性和性能</li>
+<li>安全性和性能将是本系统设计时最关键的要素。</li>
+<li>关于实时性和热加载的问题，我们稍后作为一个独立的问题再次讨论</li>
+</ol>
+<hr />
+<p>下面我会针对你目前的设计思路逐条进行审查，并给出一些可参考的技术建议或改进思路。整体来看，你的方案在“节点 + 信道 + 任务描述”的基础上，通过Rust的安全模型来构建高效和稳健的系统，方向是可行的；但在并发细节、错误处理、生命周期管理、嵌入式适配等方面还有可以进一步完善的空间。</p>
+<ol>
+<li><strong>RwLock 作为读写锁的方案</strong>  </li>
+<li><strong>可行性</strong>：单个写者+多个读者的并发读写模型，足以应对大多数“上层只读、底层少量写”场景。  </li>
+<li><strong>潜在问题</strong>：当读操作非常密集，写操作也频繁出现时，阻塞还是难以避免；或者如果读操作本身耗时较长，写操作会被长时间排队。  </li>
+<li>
+<p><strong>可改进方向</strong>：  </p>
+<ul>
+<li>更加细粒度的锁（例如针对不同资源区分不同锁，甚至分层/分段锁）。  </li>
+<li>无锁结构（Lock-Free）的队列或通道，比如使用 <code>crossbeam</code> 或 <code>atomic</code> 原语，但需要仔细评估复杂度与可维护性。  </li>
+<li>对性能敏感的场景，可以将写入操作集中在“短暂的独占区”，然后快速释放锁，让读者更快进入。</li>
+</ul>
+</li>
+<li>
+<p><strong>节点生命周期管理</strong>  </p>
+</li>
+<li><strong>强制线程管理器调度</strong>节点从 “init → update → destroy” 的思路，与 ROS2 Lifecycle Nodes 的概念类似，只是粒度更简洁。  </li>
+<li><strong>优点</strong>：  <ul>
+<li>让机器人开发者编写节点时只需实现 <code>init/update/destroy</code> 即可，开发门槛更低。  </li>
+<li>避免工程师去关心线程、内存、锁等低层细节。  </li>
+</ul>
+</li>
+<li><strong>缺点</strong>：  <ul>
+<li>失去了对节点行为进行更灵活定义的自由度（例如：有些节点需要特定的子状态机或动态重启时机）。  </li>
+<li>如果工程师要实现复杂状态切换流程，必须在 <code>update</code> 中自行管理更多逻辑，可能造成某些节点内部代码变得臃肿。  </li>
+</ul>
+</li>
+<li>
+<p><strong>建议</strong>：  </p>
+<ul>
+<li>目前做法在初期阶段是很实用的，能大大简化开发复杂度。  </li>
+<li>如果将来需求变得多样化，可以考虑在 <code>NodeBehavior</code> 中扩展为多种“子态”或“挂起/重置”之类的 hook，以免所有逻辑都堆在 <code>update</code> 里。</li>
+</ul>
+</li>
+<li>
+<p><strong>流量控制</strong>  </p>
+</li>
+<li>你已注意到：节点的执行频率、数据生产与消费速率若不匹配，会出现阻塞或丢失数据。  </li>
+<li>一种常见做法是：  <ul>
+<li>在<strong>产生数据</strong>的上游节点里加入<strong>速率控制</strong>（限流）或缓存上限；  </li>
+<li>在下游节点里实现“最新数据覆盖”或“排队策略”，防止无界队列耗尽内存。  </li>
+</ul>
+</li>
+<li>
+<p>后续你打算单独讨论，完全没问题，但一定要结合<strong>节点执行周期</strong>和<strong>数据优先级</strong>一起来做综合设计。</p>
+</li>
+<li>
+<p><strong>实时性</strong>  </p>
+</li>
+<li>在非实时 OS 环境下，无法做到硬实时保证，但可以做<strong>最优努力</strong>：如设置线程优先级、分配 CPU 亲和、采用 “RT 线程” 调度策略（在Linux + RT-Preempt补丁中）等。  </li>
+<li>对于不带RT补丁的通用操作系统，只能在一定程度上提高调度优先级，仍然可能被系统中断。  </li>
+<li>
+<p>多平台情况下，如果底层平台有RTOS（或预留中断+裸机），可以将最关键的控制环放在RT线程里，而非核心的节点或任务可以运行在普通线程中。</p>
+</li>
+<li>
+<p><strong>硬件层错误由 RobotBus 负责</strong>  </p>
+</li>
+<li>让 RobotBus 提供对硬件健康度、连接状态的保证是个好思路，但<strong>要注意</strong>：  <ul>
+<li>当 RobotBus 自身检测到硬件故障或严重通信中断时，系统应该有一个“全局故障处理”通道来通知所有相关节点，并可及时采取安全动作（如急停或容错）。  </li>
+<li>可以在 RobotBus 层定义更具体的“故障类型”和“恢复策略”，如“自动重连”、“退化模式”等。</li>
+</ul>
+</li>
+<li><strong>上层节点的错误处理</strong>  </li>
+<li>你提到利用“旁支节点”或“代理节点”来完成紧急处理和错误传回，但也担心运行时建立这些节点会增大开销、同时增加锁竞争或死锁的风险。  </li>
+<li><strong>常见做法</strong>：  <ul>
+<li>使用<strong>监督者 (Supervisor) / Actor</strong> 模型：一个专门的管理节点来监控子节点的错误。子节点一旦报错，可以通知监督者，后者决定是否重启、跳过或转发错误给更上层。  </li>
+<li>如果希望<strong>分布式</strong>或<strong>多线程</strong>地处理错误，依然要保证不会出现死锁/重复调用。可以在监督者内使用消息队列异步地派发恢复逻辑，避免“回调套回调”导致的锁嵌套。  </li>
+</ul>
+</li>
+<li>
+<p><strong>建议</strong>：如果你觉得“旁支代理节点”过于复杂，可考虑用一个更轻量的 Supervisor 来集中管理错误处理流程，不必在运行时临时创建大量节点。</p>
+</li>
+<li>
+<p><strong>以 JSON 表达有向图</strong>  </p>
+</li>
+<li>这是很常见的做法。核心是<strong>在系统内部</strong>要将 JSON 解析出来后，形成真正的节点依赖拓扑结构。  </li>
+<li><strong>建议</strong>：  <ul>
+<li>使用<strong>拓扑排序</strong>或有向无环图 (DAG) 来确定执行顺序。若不小心出现环，系统可能无法自动完成依赖；  </li>
+<li>在大规模场景下，最好能做<strong>循环检测</strong>、<strong>冲突检测</strong>以及<strong>资源竞争</strong>分析，避免多个任务争用相同机器人资源。  </li>
+</ul>
+</li>
+<li><strong>关于热加载</strong>  </li>
+<li>
+<p>后续你会单独讨论，这里只提示：动态修改JSON引起的节点增减，必须考虑对已在运行的节点安全退出、重启或无缝更新，会影响线程与资源管理。</p>
+</li>
+<li>
+<p><strong>直接根据 JSON 创建线程</strong>  </p>
+</li>
+<li>这种“一个节点一个线程”的方式简单易懂，但当节点数量大时，线程切换的开销会迅速增长。  </li>
+<li><strong>改进方向</strong>：  <ul>
+<li>考虑引入<strong>线程池</strong>，将节点调度与线程调度分离；或考虑<strong>异步执行模型</strong> (如 <code>tokio</code>/<code>async-std</code>) 来处理大量并发任务。  </li>
+<li>如果系统规模不大、节点数量有限，现阶段也可以容忍“直接一线程对一节点”。</li>
+</ul>
+</li>
+<li>
+<p><strong>在单片机平台上的调度</strong>  </p>
+<ul>
+<li>你可以了解下常见的<strong>RTOS</strong>（如 <a href="https://www.freertos.org/">FreeRTOS</a>、<a href="https://www.zephyrproject.org/">Zephyr</a> 等），也可以看看 Rust 社区的嵌入式框架：  </li>
+<li><strong>RTIC (Real-Time Interrupt-driven Concurrency)</strong>：一个在嵌入式Rust中常用的调度框架，基于事件驱动、优先级互斥，可以简化并发编程，同时提供一定程度的实时保障。  </li>
+<li><strong>无操作系统(裸机)</strong>：使用中断+全局循环的方式管理任务，需要自己编写调度器/时钟管理，但可获得最小的开销和最高的可控度。  </li>
+</ul>
+</li>
+<li>
+<p><strong>预分配内存</strong>  </p>
+<ul>
+<li>你的思路（在节点创建阶段一次性申请好该节点完整的执行期所需内存，避免循环内频繁分配）非常好，也是<strong>嵌入式</strong>和<strong>实时系统</strong>常用的做法。  </li>
+<li>如果需要多任务动态创建，还可使用“固定大小的内存池”或“多级内存池”以避免堆内存碎片。</li>
+</ul>
+</li>
+<li>
+<p>你计划后面再详细讨论，这里先补充一点：  </p>
+</li>
+<li>在 Rust 里，可以结合<strong>异步通道</strong> (<code>futures::channel</code> or <code>tokio::sync::mpsc</code>) 处理事件型通信，结合<strong>无锁队列</strong>或<strong>环形缓冲</strong>(ring buffer)来处理高频数据流。  </li>
+<li>
+<p>对于<strong>紧急事件</strong>（如故障、急停），通常需要“抢占”或“直接中断”，不应只放入排队逻辑中，以免高负载下出现延迟。</p>
+</li>
+<li>
+<p>你会在单片机上使用一个更轻量的“同构”内核，保留相同的通信方法与节点模型，但根据裸机/RTOS需求来改写底层调度与资源管理，这样的抽象思路是对的。  </p>
+</li>
+<li>
+<p><strong>关键在于</strong>保持上层API和概念一致，让用户在PC端或嵌入式端都能用近似的方式描述任务与节点，减少移植门槛。</p>
+</li>
+<li>
+<p>你将“RobotBus”定位为<strong>对机器人指令、任务、约束的协议抽象层</strong>，并不与具体的网络物理层或工业总线相冲突。  </p>
+</li>
+<li><strong>建议</strong>：  </li>
+<li>尽量定义好<strong>指令集</strong>或<strong>数据格式</strong>的版本和兼容策略，尤其是后续可能会扩展支持更多硬件/仿真后端。  </li>
+<li>
+<p>如果需要与第三方控制器或现有工业协议交互，可在 RobotBus 底层实现“翻译适配层”，对外仍然保持统一的RobotBus接口。</p>
+</li>
+<li>
+<p><strong>安全</strong>  </p>
+</li>
+<li>Rust在语言层面能帮你消除大部分内存安全问题；剩下的关键点是<strong>并发逻辑</strong>是否正确，以及<strong>硬件交互</strong>中的不安全代码块需仔细审计。  </li>
+<li>如果有网络互联或远程控制，还要考虑指令身份认证、通信加密等更高级别的安全需求。</li>
+<li><strong>性能</strong>  </li>
+<li>主要取决于<strong>并发模型</strong>（线程数、锁争用、队列数量）和<strong>调度策略</strong>。  </li>
+<li>如果要在多任务并行、实时性要求高的场合，就需要更精细的调度机制和资源隔离。  </li>
+<li>你也可以在后期通过<strong>基准测试</strong>和<strong>profiling</strong>（如 <code>perf</code>, <code>flamegraph</code>, <code>cargo profiler</code> 等）来找到瓶颈点，再做针对性优化。</li>
+</ol>
+<h2 id="_2">总结</h2>
+<ul>
+<li>整体方案思路清晰、实现上也兼顾了Rust的安全与对机器人开发者的易用性。  </li>
+<li>在<strong>节点生命周期</strong>、<strong>错误处理</strong>、<strong>并发调度</strong>等方面，你目前的做法非常贴合“工程落地”的实际需求：简化外部开发者的心智负担、由系统内核负责线程与内存管理。  </li>
+<li>建议在后续迭代时，聚焦在以下几点完善：  </li>
+<li><strong>并发策略</strong>：在数据频繁读写或节点数量较多的场景下，评估如何降低锁争用、是否需要线程池/异步调度。  </li>
+<li><strong>错误与故障恢复</strong>：考虑引入 Supervisor 或更完整的节点状态机，避免因“临时代理节点”而带来的高额开销或死锁风险。  </li>
+<li><strong>嵌入式RTOS/无操作系统适配</strong>：可以探索RTIC等框架，或至少了解 Zephyr/FreeRTOS 的基本调度概念，以支持多样化的硬件平台。  </li>
+<li><strong>任务依赖图</strong>：确保对 JSON 中的有向图做循环检测、拓扑排序，并在资源争用时有冲突检测机制。  </li>
+</ul>
+<p>如有更细节的需求（如“如何具体实现线程池”或“如何做热加载”），可以在后续发起更聚焦的问题，再进行更深入的设计和技术方案探讨。祝你项目进展顺利!</p>
+
+
+
+
+
+
+
+
+  <aside class="md-source-file">
+    
+    
+    
+      
+  
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Contributors">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/></svg>
+      
+    </span>
+    <nav>
+      
+        <a href="mailto:yanjizhou312@163.com">yixing</a>
+    </nav>
+  </span>
+
+    
+    
+  </aside>
+
+
+  
+
+
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        Was this page helpful?
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page was helpful" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8m2 0a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10M10 9.5c0 .8-.7 1.5-1.5 1.5S7 10.3 7 9.5 7.7 8 8.5 8s1.5.7 1.5 1.5m7 0c0 .8-.7 1.5-1.5 1.5S14 10.3 14 9.5 14.7 8 15.5 8s1.5.7 1.5 1.5m-5 7.73c-1.75 0-3.29-.73-4.19-1.81L9.23 14c.45.72 1.52 1.23 2.77 1.23s2.32-.51 2.77-1.23l1.42 1.42c-.9 1.08-2.44 1.81-4.19 1.81"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page could be improved" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8m2 0a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10m-6.5-4c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5-1.5-.7-1.5-1.5.7-1.5 1.5-1.5M10 9.5c0 .8-.7 1.5-1.5 1.5S7 10.3 7 9.5 7.7 8 8.5 8s1.5.7 1.5 1.5m2 4.5c1.75 0 3.29.72 4.19 1.81l-1.42 1.42C14.32 16.5 13.25 16 12 16s-2.32.5-2.77 1.23l-1.42-1.42C8.71 14.72 10.25 14 12 14"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              
+              
+                
+                
+              
+              Thanks for your feedback!
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              
+              
+                
+                
+              
+              Thanks for your feedback! Help us improve this page by using our <a href="..." target="_blank" rel="noopener">feedback form</a>.
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../%E5%A4%96%E8%AE%BE/%E5%A4%96%E8%AE%BE%E9%A9%B1%E5%8A%A8/hans/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 外设 - 驱动 - Hans">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                外设 - 驱动 - Hans
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../%E6%96%87%E6%A1%A3/Introduction/" class="md-footer__link md-footer__link--next" aria-label="Next: Introduction">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Introduction
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      内部使用，切勿外传
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.copy", "content.code.select", "content.code.annotate", "content.tabs.link", "navigation.footer"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../../javascripts/katex.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>
