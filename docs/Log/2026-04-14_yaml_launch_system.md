@@ -58,6 +58,7 @@ roplat_launch/src/
 ```yaml
 # arch.yaml
 version: "1"          # 可选
+default_crate: my_lib  # 可选，短名自动加此前缀
 
 resources:
   - id: shared_buf
@@ -118,10 +119,15 @@ nodes:
 
 ### 方式一：`#[system(file = "arch.yaml")]`
 
+编译期宏展开，节点定义在同 crate 内：
+
 ```rust
+use file_launch::{SourceNode, DoubleNode, PrinterNode};
+use roplat::Node;
+use roplat::rhythm::Rhythm;
+
 #[roplat::system(file = "arch.yaml")]
 async fn main() {
-    // __params 和 __registry 由生成代码使用
     let __params = roplat::roplat_launch::ParamConfig::from_yaml(
         &std::fs::read_to_string("params.yaml").unwrap()
     ).unwrap();
@@ -130,19 +136,54 @@ async fn main() {
 }
 ```
 
-宏在编译期读取 `arch.yaml`（相对于 `CARGO_MANIFEST_DIR`），调用 `arch_to_tokens()` 生成 DSL 语句，与用户函数体合并后走完整管线。
+### 方式二：`cargo roplat generate` + `cargo roplat run`
 
-### 方式二：`cargo roplat` CLI
+纯 YAML 驱动，自动生成 `.rs` 入口文件并编译运行：
 
 ```bash
-# 验证架构文件
-cargo roplat validate arch.yaml --params params.yaml
+# 生成 .rs 到 roplat/ 目录（mtime 检测，arch 未变则跳过）
+cargo roplat generate arch.yaml
 
-# 生成系统代码
-cargo roplat launch arch.yaml -o generated_system.rs
+# 生成 + 编译 + 运行（params 是运行时参数，换文件不触发重编译）
+cargo roplat run arch.yaml params.yaml
+
+# 强制重新生成
+cargo roplat generate arch.yaml --force
+```
+
+`arch.yaml` 中通过 `default_crate` 字段自动为短类名补全 crate 前缀：
+
+```yaml
+default_crate: file_launch
+
+nodes:
+  - id: source
+    class: SourceNode          # → file_launch::SourceNode
+  - id: ext
+    class: other_lib::ExtNode  # 已有完整路径，保持原样
+```
+
+生成的 `roplat/<stem>.rs` 包含完整 `use` 块和 `#[roplat::system] fn main()`，
+注册为 `[[bin]]` target 后可直接 `cargo run --bin <stem>`。
+
+### 方式三：`cargo roplat codegen`（预览代码）
+
+```bash
+# 输出代码到 stdout（调试用）
+cargo roplat codegen arch.yaml
+
+# 输出到文件
+cargo roplat codegen arch.yaml -o out.rs
+```
+
+### 其他命令
+
+```bash
+# 验证架构和参数文件
+cargo roplat validate arch.yaml params.yaml
 
 # 列出库中可用节点
-cargo roplat list-nodes --manifest-path path/to/Cargo.toml
+cargo roplat list-nodes
 ```
 
 ### 方式三：节点侧 `__system_new_from_launch`
@@ -177,20 +218,28 @@ let buf: Arc<RingBuffer<SensorData>> = reg.get("buffer").unwrap();
 
 | 命令 | 功能 |
 |------|------|
-| `validate <arch.yaml>` | 解析验证架构/参数文件，输出摘要 |
-| `launch <arch.yaml>` | 生成完整系统 Rust 代码 |
-| `list-nodes` | 设置 ROPLAT_PHASE=EXTRACT → cargo check → 读取节点 manifest JSON |
+| `generate <arch.yaml>` | 生成 `.rs` 入口到 `roplat/` 目录，mtime 变更检测 |
+| `run <arch.yaml> [params.yaml]` | generate + `cargo run --bin <stem> -- [params]` |
+| `codegen <arch.yaml>` | 预览生成代码（stdout / `-o` 文件） |
+| `validate <arch.yaml> [params.yaml]` | 解析验证架构/参数文件 |
+| `list-nodes` | EXTRACT 阶段读取节点 manifest |
 
-`list-nodes` 利用 `#[node]` 宏在 EXTRACT 阶段写入的 manifest 文件（`node_*.json`）来枚举所有可用节点。
+### 变更检测
+
+`generate` / `run` 通过 mtime 比较避免不必要的重编译：
+
+- `arch.yaml` mtime > `.rs` mtime → 重新生成
+- `arch.yaml` 未变 → 跳过生成 → cargo 发现二进制无需重编译
+- `params.yaml` 是运行时参数 → 换文件不触发重编译
 
 ## 测试覆盖
 
 | 模块 | 测试数 | 内容 |
 |------|--------|------|
-| `arch.rs` | 7 | 解析、验证、循环检测、初始化顺序、hard 标记 |
+| `arch.rs` | 11 | 解析、验证、循环检测、初始化顺序、hard 标记、`resolve_type_path`、`collect_use_paths` |
 | `param.rs` | 2 | 解析、参数查询 |
 | `registry.rs` | 5 | 插入、获取、类型安全、Arc 共享 |
-| `codegen.rs` | 3 | 基础生成、节律生成、资源生成 |
+| `codegen.rs` | 4 | 基础生成、节律生成、端点解析、完整文件生成（use 块） |
 
 ## 关键设计决策
 
