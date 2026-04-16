@@ -2,27 +2,47 @@ site_name: Roplat Documentation
 
 nav:
   - 首页: index.md
-  - Introduction: 01 Introduction.md
-  - 新手学习路线: 02 新手学习路线.md
-  - 概念讲解:
-    - 概念导读: Concepts/00 概念导读.md
-    - 节点与消息: Concepts/01 节点与消息.md
-    - 节律与系统: Concepts/02 节律与系统.md
-    - 通讯与数据模型: Concepts/03 通讯与数据模型.md
+  - 指南:
+    - 项目介绍: Guide/01 Introduction.md
+    - 设计哲学: Guide/02 Design.md
+    - 学习路线: Guide/03 Roadmap.md
+  - 核心概念:
+    - 节点 Node: Concepts/01 Node.md
+    - 节律 Rhythm: Concepts/02 Rhythm.md
+    - 系统 System: Concepts/03 System.md
+    - 通讯模型: Concepts/04 Comm.md
+    - 录制与回放: Concepts/05 Replay.md
   - 快速开始:
-    - 快速开始总览: QuickStart/00 快速开始总览.md
-    - 从零创建 Rust 项目: QuickStart/01 从零创建 Rust 项目.md
+    - 总览: QuickStart/00 快速开始总览.md
+    - 创建 Rust 项目: QuickStart/01 从零创建 Rust 项目.md
     - 扩展 C++ 节点: QuickStart/02 扩展 C++ 节点.md
     - 扩展 Python 节点: QuickStart/03 扩展 Python 节点.md
     - 实现数据互通: QuickStart/04 实现数据互通.md
-    - 编译与发布使用: QuickStart/05 编译与发布使用.md
-    - 路径排错实验库: QuickStart/06 路径排错实验库.md
-  - 变更日志:
-    - 2026-04-12 新手文档首版: Log/2026-04-12_newbie_user_docs_bootstrap.md
+    - 编译与发布: QuickStart/05 编译与发布使用.md
+    - 排错工具: QuickStart/06 路径排错实验库.md
+  - 架构参考:
+    - 总览: Architecture/00 Overview.md
+    - 编译管线: Architecture/01 Pipeline.md
+    - CLI 工具: Architecture/02 CLI.md
+  - 开发者文档:
+    - 项目入门: Controbuction/0 项目入门.md
+    - 设计思想: Controbuction/1 设计思想.md
+    - 节点: Controbuction/2 节点.md
+    - 节律源: Controbuction/3 节律源.md
+    - 系统: Controbuction/4 系统.md
+    - 通讯: Controbuction/5 通讯.md
+    - 多语言: Controbuction/6 多语言.md
+    - 附属文件生成: Controbuction/7 附属文件生成.md
+    - 图规约与系统宏: Controbuction/8 图规约与系统宏.md
+    - 文件启动: Controbuction/9 文件启动.md
+    - 启动文件协议: Controbuction/10 启动文件协议.md
+    - 确定性录制与回放: Controbuction/11 确定性录制与回放.md
+  - 开发日志:
+    - Log/
 
 theme:
-  logo: asserts/icon.png
-  favicon: asserts/icon.png
+  logo: assets/icon.png
+  favicon: assets/icon.png
   name: material
   features:
     - content.code.copy
