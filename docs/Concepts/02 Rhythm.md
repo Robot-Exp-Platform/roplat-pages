@@ -43,7 +43,7 @@ pub trait Rhythm {
 !!! note "在 System DSL 中控制 Feed"
     system 宏利用 Rust 的分号语义自动推导 Feed 类型：块中最后一条链**无分号**时，其输出作为 Feed；**有分号**时，Feed 为 `()`。详见 [系统 System — 分号语义与 Feed 类型](03%20System.md#分号语义与-feed-类型)。
 
-## 四种内置节律源
+## 五种内置节律源
 
 ### 1. SysTimer — 系统定时器
 
@@ -112,6 +112,38 @@ let data = vec![1.0, 2.0, 3.0, 4.0, 5.0];
 !!! note "Iterator 节律的限制"
     Iterator 是开环的——它不处理 Feed（反馈）。如果你的节点需要根据上一帧的输出调整下一帧的输入（闭环控制），请使用 `SysTimer` 或 `EventRhythm`。
 
+### 5. SimRhythm — 仿真步进节律
+
+由物理仿真引擎驱动的节律源，每个 tick 调用 `engine.step()` 后再驱动下游节点。典型用于仿真环境中的观测、记录等任务。
+
+```rust
+use rsbullet::SimRhythm;
+
+let sim_rhythm = SimRhythm::new(engine, Duration::from_secs_f64(1.0 / 240.0)); // 240Hz
+```
+
+`SimRhythm` 按固定间隔步进物理引擎，然后 yield `()` 给下游节点：
+
+```rust
+sim_rhythm >> {
+    observer >> recorder;  // 每个仿真步后执行观测和记录
+};
+```
+
+!!! tip "SimRhythm 与多域配合"
+    仿真场景通常包含多个节律域：高频的 `SimRhythm`（如 240Hz 物理步进）与较低频的 `SysTimer`（如 1kHz 控制、60Hz 输入采样）并行运行，域间通过旁路通讯交换数据。例如遥操作仿真中：
+
+    ```rust
+    // 域 1：输入采样 ~60Hz
+    input_timer >> { space_mouse >> mapper; };
+
+    // 域 2：控制计算 ~1kHz
+    control_timer >> { controller >> robot; };
+
+    // 域 3：仿真步进 ~240Hz
+    sim_rhythm >> { observer >> recorder; };
+    ```
+
 ## 节律域
 
 在一个 system 中，可以有多个节律源同时运行，每个节律源驱动一组节点——这称为一个**节律域**：
@@ -160,6 +192,7 @@ shutdown()    ─→  on_shutdown() 被调用（所有节点）
 | CountRhythm | ~0.1μs | 0 | 不限 |
 | EventRhythm | ~1μs（channel recv） | 0 | 取决于事件源 |
 | Iterator | ~0ns | 0 | 全速（CPU bound） |
+| SimRhythm | ~1μs + engine.step() | 0 | 取决于仿真精度（常见 240Hz） |
 
 ## 下一步
 
