@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>None./</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="None"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/"/>
+    </url>
+    <url>
+        <loc>NoneArchitecture/00%20Overview/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneArchitecture/00%20Overview/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Architecture/00%20Overview/"/>
+    </url>
+    <url>
+        <loc>NoneArchitecture/01%20Pipeline/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneArchitecture/01%20Pipeline/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Architecture/01%20Pipeline/"/>
+    </url>
+    <url>
+        <loc>NoneArchitecture/02%20CLI/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneArchitecture/02%20CLI/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Architecture/02%20CLI/"/>
+    </url>
+    <url>
+        <loc>NoneConcepts/00%20%E6%A6%82%E5%BF%B5%E5%AF%BC%E8%AF%BB/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneConcepts/00%20%E6%A6%82%E5%BF%B5%E5%AF%BC%E8%AF%BB/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Concepts/00%20%E6%A6%82%E5%BF%B5%E5%AF%BC%E8%AF%BB/"/>
+    </url>
+    <url>
+        <loc>NoneConcepts/01%20Node/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneConcepts/01%20Node/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Concepts/01%20Node/"/>
+    </url>
+    <url>
+        <loc>NoneConcepts/01%20%E8%8A%82%E7%82%B9%E4%B8%8E%E6%B6%88%E6%81%AF/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneConcepts/01%20%E8%8A%82%E7%82%B9%E4%B8%8E%E6%B6%88%E6%81%AF/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Concepts/01%20%E8%8A%82%E7%82%B9%E4%B8%8E%E6%B6%88%E6%81%AF/"/>
+    </url>
+    <url>
+        <loc>NoneConcepts/02%20Rhythm/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneConcepts/02%20Rhythm/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Concepts/02%20Rhythm/"/>
+    </url>
+    <url>
+        <loc>NoneConcepts/02%20%E8%8A%82%E5%BE%8B%E4%B8%8E%E7%B3%BB%E7%BB%9F/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneConcepts/02%20%E8%8A%82%E5%BE%8B%E4%B8%8E%E7%B3%BB%E7%BB%9F/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Concepts/02%20%E8%8A%82%E5%BE%8B%E4%B8%8E%E7%B3%BB%E7%BB%9F/"/>
+    </url>
+    <url>
+        <loc>NoneConcepts/03%20System/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneConcepts/03%20System/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Concepts/03%20System/"/>
+    </url>
+    <url>
+        <loc>NoneConcepts/03%20%E9%80%9A%E8%AE%AF%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneConcepts/03%20%E9%80%9A%E8%AE%AF%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Concepts/03%20%E9%80%9A%E8%AE%AF%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/"/>
+    </url>
+    <url>
+        <loc>NoneConcepts/04%20Comm/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneConcepts/04%20Comm/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Concepts/04%20Comm/"/>
+    </url>
+    <url>
+        <loc>NoneConcepts/05%20Replay/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneConcepts/05%20Replay/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Concepts/05%20Replay/"/>
+    </url>
+    <url>
+        <loc>NoneControbuction/0%20%E9%A1%B9%E7%9B%AE%E5%85%A5%E9%97%A8/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/0%20%E9%A1%B9%E7%9B%AE%E5%85%A5%E9%97%A8/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/0%20%E9%A1%B9%E7%9B%AE%E5%85%A5%E9%97%A8/"/>
+    </url>
+    <url>
+        <loc>NoneControbuction/1%20%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/1%20%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/1%20%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/"/>
+    </url>
+    <url>
+        <loc>NoneControbuction/10%20%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6%E5%8D%8F%E8%AE%AE/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/10%20%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6%E5%8D%8F%E8%AE%AE/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/10%20%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6%E5%8D%8F%E8%AE%AE/"/>
+    </url>
+    <url>
+        <loc>NoneControbuction/11%20%E7%A1%AE%E5%AE%9A%E6%80%A7%E5%BD%95%E5%88%B6%E4%B8%8E%E5%9B%9E%E6%94%BE/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/11%20%E7%A1%AE%E5%AE%9A%E6%80%A7%E5%BD%95%E5%88%B6%E4%B8%8E%E5%9B%9E%E6%94%BE/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/11%20%E7%A1%AE%E5%AE%9A%E6%80%A7%E5%BD%95%E5%88%B6%E4%B8%8E%E5%9B%9E%E6%94%BE/"/>
+    </url>
+    <url>
+        <loc>NoneControbuction/2%20%E8%8A%82%E7%82%B9/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/2%20%E8%8A%82%E7%82%B9/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/2%20%E8%8A%82%E7%82%B9/"/>
+    </url>
+    <url>
+        <loc>NoneControbuction/3%20%E8%8A%82%E5%BE%8B%E6%BA%90/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/3%20%E8%8A%82%E5%BE%8B%E6%BA%90/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/3%20%E8%8A%82%E5%BE%8B%E6%BA%90/"/>
+    </url>
+    <url>
+        <loc>NoneControbuction/4%20%E7%B3%BB%E7%BB%9F/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/4%20%E7%B3%BB%E7%BB%9F/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/4%20%E7%B3%BB%E7%BB%9F/"/>
+    </url>
+    <url>
+        <loc>NoneControbuction/5%20%E9%80%9A%E8%AE%AF/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/5%20%E9%80%9A%E8%AE%AF/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/5%20%E9%80%9A%E8%AE%AF/"/>
+    </url>
+    <url>
+        <loc>NoneControbuction/6%20%E5%A4%9A%E8%AF%AD%E8%A8%80/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/6%20%E5%A4%9A%E8%AF%AD%E8%A8%80/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/6%20%E5%A4%9A%E8%AF%AD%E8%A8%80/"/>
+    </url>
+    <url>
+        <loc>NoneControbuction/7%20%E9%99%84%E5%B1%9E%E6%96%87%E4%BB%B6%E7%94%9F%E6%88%90/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/7%20%E9%99%84%E5%B1%9E%E6%96%87%E4%BB%B6%E7%94%9F%E6%88%90/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/7%20%E9%99%84%E5%B1%9E%E6%96%87%E4%BB%B6%E7%94%9F%E6%88%90/"/>
+    </url>
+    <url>
+        <loc>NoneControbuction/8%20%E5%9B%BE%E8%A7%84%E7%BA%A6%E4%B8%8E%E7%B3%BB%E7%BB%9F%E5%AE%8F/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/8%20%E5%9B%BE%E8%A7%84%E7%BA%A6%E4%B8%8E%E7%B3%BB%E7%BB%9F%E5%AE%8F/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/8%20%E5%9B%BE%E8%A7%84%E7%BA%A6%E4%B8%8E%E7%B3%BB%E7%BB%9F%E5%AE%8F/"/>
+    </url>
+    <url>
+        <loc>NoneControbuction/9%20%E6%96%87%E4%BB%B6%E5%90%AF%E5%8A%A8/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/9%20%E6%96%87%E4%BB%B6%E5%90%AF%E5%8A%A8/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/9%20%E6%96%87%E4%BB%B6%E5%90%AF%E5%8A%A8/"/>
+    </url>
+    <url>
+        <loc>NoneGuide/01%20Introduction/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneGuide/01%20Introduction/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Guide/01%20Introduction/"/>
+    </url>
+    <url>
+        <loc>NoneGuide/02%20Design/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneGuide/02%20Design/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Guide/02%20Design/"/>
+    </url>
+    <url>
+        <loc>NoneGuide/03%20Roadmap/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneGuide/03%20Roadmap/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Guide/03%20Roadmap/"/>
+    </url>
+    <url>
+        <loc>NoneLog/2026-04-05_comm_triple_buffer/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-05_comm_triple_buffer/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-05_comm_triple_buffer/"/>
+    </url>
+    <url>
+        <loc>NoneLog/2026-04-06_multi_lang_codegen/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-06_multi_lang_codegen/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-06_multi_lang_codegen/"/>
+    </url>
+    <url>
+        <loc>NoneLog/2026-04-10_two_pass_build/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-10_two_pass_build/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-10_two_pass_build/"/>
+    </url>
+    <url>
+        <loc>NoneLog/2026-04-12_multi_lang_runtime_bridge/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-12_multi_lang_runtime_bridge/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-12_multi_lang_runtime_bridge/"/>
+    </url>
+    <url>
+        <loc>NoneLog/2026-04-12_newbie_user_docs_bootstrap/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-12_newbie_user_docs_bootstrap/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-12_newbie_user_docs_bootstrap/"/>
+    </url>
+    <url>
+        <loc>NoneLog/2026-04-12_opaque_and_dual_native_build/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-12_opaque_and_dual_native_build/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-12_opaque_and_dual_native_build/"/>
+    </url>
+    <url>
+        <loc>NoneLog/2026-04-12_system_graph_reduction/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-12_system_graph_reduction/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-12_system_graph_reduction/"/>
+    </url>
+    <url>
+        <loc>NoneLog/2026-04-13_comm_ring_buffer/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-13_comm_ring_buffer/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-13_comm_ring_buffer/"/>
+    </url>
+    <url>
+        <loc>NoneLog/2026-04-13_multi_lang_test_matrix_and_opaque_bus/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-13_multi_lang_test_matrix_and_opaque_bus/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-13_multi_lang_test_matrix_and_opaque_bus/"/>
+    </url>
+    <url>
+        <loc>NoneLog/2026-04-13_pyo3_python_bridge/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-13_pyo3_python_bridge/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-13_pyo3_python_bridge/"/>
+    </url>
+    <url>
+        <loc>NoneLog/2026-04-13_system_lifecycle_and_cleanup/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-13_system_lifecycle_and_cleanup/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-13_system_lifecycle_and_cleanup/"/>
+    </url>
+    <url>
+        <loc>NoneLog/2026-04-14_yaml_launch_system/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-14_yaml_launch_system/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-14_yaml_launch_system/"/>
+    </url>
+    <url>
+        <loc>NoneLog/2026-04-15_zero_alloc_rhythm_and_safety/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-15_zero_alloc_rhythm_and_safety/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-15_zero_alloc_rhythm_and_safety/"/>
+    </url>
+    <url>
+        <loc>NoneLog/2026-04-16_deterministic_replay/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-16_deterministic_replay/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-16_deterministic_replay/"/>
+    </url>
+    <url>
+        <loc>NoneLog/2026-04-16_multi_lang_field_sync/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-16_multi_lang_field_sync/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-16_multi_lang_field_sync/"/>
+    </url>
+    <url>
+        <loc>NoneLog/2026-04-17_sim_rhythm_and_teleop/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-17_sim_rhythm_and_teleop/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-17_sim_rhythm_and_teleop/"/>
+    </url>
+    <url>
+        <loc>NoneLog/2026-04-17_system_feed_semantics/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-17_system_feed_semantics/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-17_system_feed_semantics/"/>
+    </url>
+    <url>
+        <loc>NoneLog/2026-04-19_experiment_infrastructure_design/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-19_experiment_infrastructure_design/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-19_experiment_infrastructure_design/"/>
+    </url>
+    <url>
+        <loc>NoneQuickStart/00%20%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B%E6%80%BB%E8%A7%88/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneQuickStart/00%20%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B%E6%80%BB%E8%A7%88/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/QuickStart/00%20%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B%E6%80%BB%E8%A7%88/"/>
+    </url>
+    <url>
+        <loc>NoneQuickStart/01%20%E4%BB%8E%E9%9B%B6%E5%88%9B%E5%BB%BA%20Rust%20%E9%A1%B9%E7%9B%AE/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneQuickStart/01%20%E4%BB%8E%E9%9B%B6%E5%88%9B%E5%BB%BA%20Rust%20%E9%A1%B9%E7%9B%AE/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/QuickStart/01%20%E4%BB%8E%E9%9B%B6%E5%88%9B%E5%BB%BA%20Rust%20%E9%A1%B9%E7%9B%AE/"/>
+    </url>
+    <url>
+        <loc>NoneQuickStart/02%20%E6%89%A9%E5%B1%95%20C%2B%2B%20%E8%8A%82%E7%82%B9/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneQuickStart/02%20%E6%89%A9%E5%B1%95%20C%2B%2B%20%E8%8A%82%E7%82%B9/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/QuickStart/02%20%E6%89%A9%E5%B1%95%20C%2B%2B%20%E8%8A%82%E7%82%B9/"/>
+    </url>
+    <url>
+        <loc>NoneQuickStart/03%20%E6%89%A9%E5%B1%95%20Python%20%E8%8A%82%E7%82%B9/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneQuickStart/03%20%E6%89%A9%E5%B1%95%20Python%20%E8%8A%82%E7%82%B9/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/QuickStart/03%20%E6%89%A9%E5%B1%95%20Python%20%E8%8A%82%E7%82%B9/"/>
+    </url>
+    <url>
+        <loc>NoneQuickStart/04%20%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E4%BA%92%E9%80%9A/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneQuickStart/04%20%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E4%BA%92%E9%80%9A/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/QuickStart/04%20%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E4%BA%92%E9%80%9A/"/>
+    </url>
+    <url>
+        <loc>NoneQuickStart/05%20%E7%BC%96%E8%AF%91%E4%B8%8E%E5%8F%91%E5%B8%83%E4%BD%BF%E7%94%A8/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneQuickStart/05%20%E7%BC%96%E8%AF%91%E4%B8%8E%E5%8F%91%E5%B8%83%E4%BD%BF%E7%94%A8/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/QuickStart/05%20%E7%BC%96%E8%AF%91%E4%B8%8E%E5%8F%91%E5%B8%83%E4%BD%BF%E7%94%A8/"/>
+    </url>
+    <url>
+        <loc>NoneQuickStart/06%20%E8%B7%AF%E5%BE%84%E6%8E%92%E9%94%99%E5%AE%9E%E9%AA%8C%E5%BA%93/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneQuickStart/06%20%E8%B7%AF%E5%BE%84%E6%8E%92%E9%94%99%E5%AE%9E%E9%AA%8C%E5%BA%93/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/QuickStart/06%20%E8%B7%AF%E5%BE%84%E6%8E%92%E9%94%99%E5%AE%9E%E9%AA%8C%E5%BA%93/"/>
+    </url>
+    <url>
+        <loc>Noneen/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="None"/>
+    </url>
+    <url>
+        <loc>Noneen/Architecture/00%20Overview/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Architecture/00%20Overview/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneArchitecture/00%20Overview/"/>
+    </url>
+    <url>
+        <loc>Noneen/Architecture/01%20Pipeline/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Architecture/01%20Pipeline/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneArchitecture/01%20Pipeline/"/>
+    </url>
+    <url>
+        <loc>Noneen/Architecture/02%20CLI/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Architecture/02%20CLI/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneArchitecture/02%20CLI/"/>
+    </url>
+    <url>
+        <loc>Noneen/Concepts/00%20%E6%A6%82%E5%BF%B5%E5%AF%BC%E8%AF%BB/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Concepts/00%20%E6%A6%82%E5%BF%B5%E5%AF%BC%E8%AF%BB/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneConcepts/00%20%E6%A6%82%E5%BF%B5%E5%AF%BC%E8%AF%BB/"/>
+    </url>
+    <url>
+        <loc>Noneen/Concepts/01%20Node/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Concepts/01%20Node/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneConcepts/01%20Node/"/>
+    </url>
+    <url>
+        <loc>Noneen/Concepts/01%20%E8%8A%82%E7%82%B9%E4%B8%8E%E6%B6%88%E6%81%AF/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Concepts/01%20%E8%8A%82%E7%82%B9%E4%B8%8E%E6%B6%88%E6%81%AF/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneConcepts/01%20%E8%8A%82%E7%82%B9%E4%B8%8E%E6%B6%88%E6%81%AF/"/>
+    </url>
+    <url>
+        <loc>Noneen/Concepts/02%20Rhythm/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Concepts/02%20Rhythm/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneConcepts/02%20Rhythm/"/>
+    </url>
+    <url>
+        <loc>Noneen/Concepts/02%20%E8%8A%82%E5%BE%8B%E4%B8%8E%E7%B3%BB%E7%BB%9F/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Concepts/02%20%E8%8A%82%E5%BE%8B%E4%B8%8E%E7%B3%BB%E7%BB%9F/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneConcepts/02%20%E8%8A%82%E5%BE%8B%E4%B8%8E%E7%B3%BB%E7%BB%9F/"/>
+    </url>
+    <url>
+        <loc>Noneen/Concepts/03%20System/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Concepts/03%20System/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneConcepts/03%20System/"/>
+    </url>
+    <url>
+        <loc>Noneen/Concepts/03%20%E9%80%9A%E8%AE%AF%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Concepts/03%20%E9%80%9A%E8%AE%AF%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneConcepts/03%20%E9%80%9A%E8%AE%AF%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/"/>
+    </url>
+    <url>
+        <loc>Noneen/Concepts/04%20Comm/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Concepts/04%20Comm/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneConcepts/04%20Comm/"/>
+    </url>
+    <url>
+        <loc>Noneen/Concepts/05%20Replay/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Concepts/05%20Replay/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneConcepts/05%20Replay/"/>
+    </url>
+    <url>
+        <loc>Noneen/Controbuction/0%20%E9%A1%B9%E7%9B%AE%E5%85%A5%E9%97%A8/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/0%20%E9%A1%B9%E7%9B%AE%E5%85%A5%E9%97%A8/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/0%20%E9%A1%B9%E7%9B%AE%E5%85%A5%E9%97%A8/"/>
+    </url>
+    <url>
+        <loc>Noneen/Controbuction/1%20%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/1%20%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/1%20%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/"/>
+    </url>
+    <url>
+        <loc>Noneen/Controbuction/10%20%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6%E5%8D%8F%E8%AE%AE/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/10%20%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6%E5%8D%8F%E8%AE%AE/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/10%20%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6%E5%8D%8F%E8%AE%AE/"/>
+    </url>
+    <url>
+        <loc>Noneen/Controbuction/11%20%E7%A1%AE%E5%AE%9A%E6%80%A7%E5%BD%95%E5%88%B6%E4%B8%8E%E5%9B%9E%E6%94%BE/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/11%20%E7%A1%AE%E5%AE%9A%E6%80%A7%E5%BD%95%E5%88%B6%E4%B8%8E%E5%9B%9E%E6%94%BE/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/11%20%E7%A1%AE%E5%AE%9A%E6%80%A7%E5%BD%95%E5%88%B6%E4%B8%8E%E5%9B%9E%E6%94%BE/"/>
+    </url>
+    <url>
+        <loc>Noneen/Controbuction/2%20%E8%8A%82%E7%82%B9/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/2%20%E8%8A%82%E7%82%B9/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/2%20%E8%8A%82%E7%82%B9/"/>
+    </url>
+    <url>
+        <loc>Noneen/Controbuction/3%20%E8%8A%82%E5%BE%8B%E6%BA%90/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/3%20%E8%8A%82%E5%BE%8B%E6%BA%90/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/3%20%E8%8A%82%E5%BE%8B%E6%BA%90/"/>
+    </url>
+    <url>
+        <loc>Noneen/Controbuction/4%20%E7%B3%BB%E7%BB%9F/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/4%20%E7%B3%BB%E7%BB%9F/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/4%20%E7%B3%BB%E7%BB%9F/"/>
+    </url>
+    <url>
+        <loc>Noneen/Controbuction/5%20%E9%80%9A%E8%AE%AF/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/5%20%E9%80%9A%E8%AE%AF/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/5%20%E9%80%9A%E8%AE%AF/"/>
+    </url>
+    <url>
+        <loc>Noneen/Controbuction/6%20%E5%A4%9A%E8%AF%AD%E8%A8%80/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/6%20%E5%A4%9A%E8%AF%AD%E8%A8%80/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/6%20%E5%A4%9A%E8%AF%AD%E8%A8%80/"/>
+    </url>
+    <url>
+        <loc>Noneen/Controbuction/7%20%E9%99%84%E5%B1%9E%E6%96%87%E4%BB%B6%E7%94%9F%E6%88%90/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/7%20%E9%99%84%E5%B1%9E%E6%96%87%E4%BB%B6%E7%94%9F%E6%88%90/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/7%20%E9%99%84%E5%B1%9E%E6%96%87%E4%BB%B6%E7%94%9F%E6%88%90/"/>
+    </url>
+    <url>
+        <loc>Noneen/Controbuction/8%20%E5%9B%BE%E8%A7%84%E7%BA%A6%E4%B8%8E%E7%B3%BB%E7%BB%9F%E5%AE%8F/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/8%20%E5%9B%BE%E8%A7%84%E7%BA%A6%E4%B8%8E%E7%B3%BB%E7%BB%9F%E5%AE%8F/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/8%20%E5%9B%BE%E8%A7%84%E7%BA%A6%E4%B8%8E%E7%B3%BB%E7%BB%9F%E5%AE%8F/"/>
+    </url>
+    <url>
+        <loc>Noneen/Controbuction/9%20%E6%96%87%E4%BB%B6%E5%90%AF%E5%8A%A8/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Controbuction/9%20%E6%96%87%E4%BB%B6%E5%90%AF%E5%8A%A8/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneControbuction/9%20%E6%96%87%E4%BB%B6%E5%90%AF%E5%8A%A8/"/>
+    </url>
+    <url>
+        <loc>Noneen/Guide/01%20Introduction/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Guide/01%20Introduction/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneGuide/01%20Introduction/"/>
+    </url>
+    <url>
+        <loc>Noneen/Guide/02%20Design/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Guide/02%20Design/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneGuide/02%20Design/"/>
+    </url>
+    <url>
+        <loc>Noneen/Guide/03%20Roadmap/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Guide/03%20Roadmap/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneGuide/03%20Roadmap/"/>
+    </url>
+    <url>
+        <loc>Noneen/Log/2026-04-05_comm_triple_buffer/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-05_comm_triple_buffer/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-05_comm_triple_buffer/"/>
+    </url>
+    <url>
+        <loc>Noneen/Log/2026-04-06_multi_lang_codegen/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-06_multi_lang_codegen/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-06_multi_lang_codegen/"/>
+    </url>
+    <url>
+        <loc>Noneen/Log/2026-04-10_two_pass_build/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-10_two_pass_build/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-10_two_pass_build/"/>
+    </url>
+    <url>
+        <loc>Noneen/Log/2026-04-12_multi_lang_runtime_bridge/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-12_multi_lang_runtime_bridge/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-12_multi_lang_runtime_bridge/"/>
+    </url>
+    <url>
+        <loc>Noneen/Log/2026-04-12_newbie_user_docs_bootstrap/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-12_newbie_user_docs_bootstrap/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-12_newbie_user_docs_bootstrap/"/>
+    </url>
+    <url>
+        <loc>Noneen/Log/2026-04-12_opaque_and_dual_native_build/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-12_opaque_and_dual_native_build/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-12_opaque_and_dual_native_build/"/>
+    </url>
+    <url>
+        <loc>Noneen/Log/2026-04-12_system_graph_reduction/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-12_system_graph_reduction/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-12_system_graph_reduction/"/>
+    </url>
+    <url>
+        <loc>Noneen/Log/2026-04-13_comm_ring_buffer/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-13_comm_ring_buffer/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-13_comm_ring_buffer/"/>
+    </url>
+    <url>
+        <loc>Noneen/Log/2026-04-13_multi_lang_test_matrix_and_opaque_bus/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-13_multi_lang_test_matrix_and_opaque_bus/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-13_multi_lang_test_matrix_and_opaque_bus/"/>
+    </url>
+    <url>
+        <loc>Noneen/Log/2026-04-13_pyo3_python_bridge/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-13_pyo3_python_bridge/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-13_pyo3_python_bridge/"/>
+    </url>
+    <url>
+        <loc>Noneen/Log/2026-04-13_system_lifecycle_and_cleanup/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-13_system_lifecycle_and_cleanup/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-13_system_lifecycle_and_cleanup/"/>
+    </url>
+    <url>
+        <loc>Noneen/Log/2026-04-14_yaml_launch_system/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-14_yaml_launch_system/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-14_yaml_launch_system/"/>
+    </url>
+    <url>
+        <loc>Noneen/Log/2026-04-15_zero_alloc_rhythm_and_safety/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-15_zero_alloc_rhythm_and_safety/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-15_zero_alloc_rhythm_and_safety/"/>
+    </url>
+    <url>
+        <loc>Noneen/Log/2026-04-16_deterministic_replay/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-16_deterministic_replay/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-16_deterministic_replay/"/>
+    </url>
+    <url>
+        <loc>Noneen/Log/2026-04-16_multi_lang_field_sync/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-16_multi_lang_field_sync/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-16_multi_lang_field_sync/"/>
+    </url>
+    <url>
+        <loc>Noneen/Log/2026-04-17_sim_rhythm_and_teleop/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-17_sim_rhythm_and_teleop/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-17_sim_rhythm_and_teleop/"/>
+    </url>
+    <url>
+        <loc>Noneen/Log/2026-04-17_system_feed_semantics/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-17_system_feed_semantics/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-17_system_feed_semantics/"/>
+    </url>
+    <url>
+        <loc>Noneen/Log/2026-04-19_experiment_infrastructure_design/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/Log/2026-04-19_experiment_infrastructure_design/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneLog/2026-04-19_experiment_infrastructure_design/"/>
+    </url>
+    <url>
+        <loc>Noneen/QuickStart/00%20%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B%E6%80%BB%E8%A7%88/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/QuickStart/00%20%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B%E6%80%BB%E8%A7%88/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneQuickStart/00%20%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B%E6%80%BB%E8%A7%88/"/>
+    </url>
+    <url>
+        <loc>Noneen/QuickStart/01%20%E4%BB%8E%E9%9B%B6%E5%88%9B%E5%BB%BA%20Rust%20%E9%A1%B9%E7%9B%AE/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/QuickStart/01%20%E4%BB%8E%E9%9B%B6%E5%88%9B%E5%BB%BA%20Rust%20%E9%A1%B9%E7%9B%AE/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneQuickStart/01%20%E4%BB%8E%E9%9B%B6%E5%88%9B%E5%BB%BA%20Rust%20%E9%A1%B9%E7%9B%AE/"/>
+    </url>
+    <url>
+        <loc>Noneen/QuickStart/02%20%E6%89%A9%E5%B1%95%20C%2B%2B%20%E8%8A%82%E7%82%B9/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/QuickStart/02%20%E6%89%A9%E5%B1%95%20C%2B%2B%20%E8%8A%82%E7%82%B9/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneQuickStart/02%20%E6%89%A9%E5%B1%95%20C%2B%2B%20%E8%8A%82%E7%82%B9/"/>
+    </url>
+    <url>
+        <loc>Noneen/QuickStart/03%20%E6%89%A9%E5%B1%95%20Python%20%E8%8A%82%E7%82%B9/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/QuickStart/03%20%E6%89%A9%E5%B1%95%20Python%20%E8%8A%82%E7%82%B9/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneQuickStart/03%20%E6%89%A9%E5%B1%95%20Python%20%E8%8A%82%E7%82%B9/"/>
+    </url>
+    <url>
+        <loc>Noneen/QuickStart/04%20%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E4%BA%92%E9%80%9A/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/QuickStart/04%20%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E4%BA%92%E9%80%9A/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneQuickStart/04%20%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E4%BA%92%E9%80%9A/"/>
+    </url>
+    <url>
+        <loc>Noneen/QuickStart/05%20%E7%BC%96%E8%AF%91%E4%B8%8E%E5%8F%91%E5%B8%83%E4%BD%BF%E7%94%A8/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/QuickStart/05%20%E7%BC%96%E8%AF%91%E4%B8%8E%E5%8F%91%E5%B8%83%E4%BD%BF%E7%94%A8/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneQuickStart/05%20%E7%BC%96%E8%AF%91%E4%B8%8E%E5%8F%91%E5%B8%83%E4%BD%BF%E7%94%A8/"/>
+    </url>
+    <url>
+        <loc>Noneen/QuickStart/06%20%E8%B7%AF%E5%BE%84%E6%8E%92%E9%94%99%E5%AE%9E%E9%AA%8C%E5%BA%93/</loc>
+        <lastmod>2026-04-19</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneen/QuickStart/06%20%E8%B7%AF%E5%BE%84%E6%8E%92%E9%94%99%E5%AE%9E%E9%AA%8C%E5%BA%93/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="NoneQuickStart/06%20%E8%B7%AF%E5%BE%84%E6%8E%92%E9%94%99%E5%AE%9E%E9%AA%8C%E5%BA%93/"/>
+    </url>
+</urlset>
