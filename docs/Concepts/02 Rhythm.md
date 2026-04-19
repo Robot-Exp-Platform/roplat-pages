@@ -40,6 +40,9 @@ pub trait Rhythm {
 - **编译器优化**：节点元组通常是小型指针集合，移入/移出被优化为寄存器操作
 - **Send 安全**：值传递消除了引用的生命周期问题，`Fut` 可以安全地标记为 `Send`
 
+!!! note "在 System DSL 中控制 Feed"
+    system 宏利用 Rust 的分号语义自动推导 Feed 类型：块中最后一条链**无分号**时，其输出作为 Feed；**有分号**时，Feed 为 `()`。详见 [系统 System — 分号语义与 Feed 类型](03%20System.md#分号语义与-feed-类型)。
+
 ## 四种内置节律源
 
 ### 1. SysTimer — 系统定时器

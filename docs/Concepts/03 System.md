@@ -33,6 +33,42 @@ async fn main() {
 | `{ a; b; }` | 顺序执行 a 然后 b |
 | `a >> b; a >> c;` | a 的输出同时扇出到 b 和 c（并行） |
 
+### 分号语义与 Feed 类型
+
+Roplat 利用 Rust 的**语句/表达式**区分来决定节律域的 `Feed` 值：
+
+| 写法 | Rust 语义 | 效果 |
+|:-----|:----------|:-----|
+| `a >> b;` | 语句（有分号） | 输出被丢弃，Feed = `()` |
+| `a >> b` | 表达式（无分号） | 最后一个节点的输出作为 Feed 返回给节律源 |
+
+这与 Rust 函数体中最后一行有无分号决定返回值的语义完全一致。
+
+**示例 — Feed = ()**
+
+当节律源不需要节点反馈时（如 `SysTimer`，其 `Feed = ()`），在链末尾加分号：
+
+```rust
+timer >> {
+    space_mouse >> mapper;  // ; → Feed = ()，输出被丢弃
+};
+```
+
+**示例 — Feed = 节点输出**
+
+当节律源需要节点反馈时（如 `ArmMotionRhythm`，其 `Feed = (MotionType, bool)`），省略最后一条链的分号：
+
+```rust
+control_rhythm >> |state| {
+    state >> position_node  // 无 ; → 表达式，输出作为 Feed 返回
+};
+```
+
+闭包形式 `|state|` 中同样适用——块内最后一条链有无分号决定 Feed 类型。
+
+!!! tip "何时加分号"
+    查看节律源的 `type Feed`：如果是 `()`，所有链都加 `;`；如果是具体类型，确保最后一条链不加 `;`。类型不匹配会产生编译错误。
+
 ### 并行与顺序
 
 作用域内互不依赖的分支自动并行：
@@ -190,14 +226,21 @@ async fn robot() {
     let mut detect = Detector::new();
     let mut plan   = Planner::new();
 
-    // 高频控制域
-    timer_1khz >> {
-        imu >> ctrl;
+    // 高频控制域 — 闭包接收 state，最后一条链无分号 → Feed 返回
+    timer_1khz >> |state| {
+        state >> imu >> ctrl  // Feed = ctrl 的输出
     };
 
-    // 中频规划域
+    // 中频规划域 — Feed = ()
     timer_100hz >> {
-        plan;
+        plan;  // 分号 → Feed = ()
+    };
+
+    // 低频感知域 — Feed = ()
+    timer_30hz >> {
+        camera >> detect;  // 分号 → Feed = ()
+    };
+}
     };
 
     // 低频感知域
