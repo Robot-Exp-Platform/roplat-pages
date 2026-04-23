@@ -37,6 +37,7 @@ nav:
     - 文件启动: Controbuction/9 文件启动.md
     - 启动文件协议: Controbuction/10 启动文件协议.md
     - 确定性录制与回放: Controbuction/11 确定性录制与回放.md
+    - 进程间通讯: Controbuction/12 进程间通讯.md
   - 开发日志:
     - Log/
 

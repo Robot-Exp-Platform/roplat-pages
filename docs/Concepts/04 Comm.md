@@ -198,6 +198,43 @@ sensor ──[triple_buffer/ring_buffer]──→ ctrl
 
 1. **主流通讯零开销** — 域内直接值传递，无序列化
 2. **旁路通讯零阻塞** — lock-free 实现，实时线程安全
+
+## 跨进程：第三类旁路通讯
+
+单进程旁路原语解决了节律域间的状态/事件共享，但不覆盖**跨进程**场景：
+
+- 语言运行时隔离（Python GIL 不能阻塞硬实时控制）
+- 故障隔离（视觉模块崩溃不带挂控制器）
+- 在线热插拔（可视化 / 录制节点随时加入）
+- 多机协同
+
+Roplat 为此提供第三类旁路资源：**`ipc::*`**。节点侧代码契约与进程内一致 —— 只是「通道建立」由编译期静态改为运行时动态：
+
+```rust
+let (writer, _) = create_ipc_ring_buffer::<Pose>(&uri, Role::Publisher, rdv)?;
+writer.unwrap().try_push(&pose);     // API 与 ring_buffer 完全一致
+```
+
+!!! info "身份三要素"
+    跨进程无法共享 Rust 类型系统，需要字符串身份：
+
+    ```text
+    roplat-ipc://<namespace>/<endpoint>?msg=<schema_id>&v=<version>
+    ```
+
+    `schema_id` 由 `#[roplat_msg]` 宏在编译期对字段签名做 FNV-1a 哈希自动生成，握手阶段双侧校验。
+
+### 对比矩阵
+
+| 维度 | 进程内 (`triple_buffer` / `ring_buffer`) | 进程间 (`ipc::*`) |
+|------|------------------------------------------|------------------|
+| 绑定时机 | 编译期 `#[system]` 宏静态确定 | 运行时通过 rendezvous 动态发现 |
+| 资源归属 | 系统图节点 | 独立 IPC 资源，不穿透系统图 |
+| 类型安全 | Rust 类型系统 | `SchemaId` 指纹 + 握手校验 |
+| 失败模式 | 几乎不可能 | `NotReady` / `PeerGone` / `SchemaMismatch` |
+| 延迟 | 纳秒级 | TCP 后端约 100 μs |
+
+详见 [通讯（贡献者向）§五](../Controbuction/5%20通讯.md#五进程间通讯ipc旁路通讯的跨进程版本) 与 [12 进程间通讯](../Controbuction/12%20进程间通讯.md)。
 3. **类型安全** — 透明类型编译期检查，不透明类型通过 TypeBinding trait 约束
 4. **跨语言透明** — 同一块内存，Rust/C++/Python 直接访问
 
