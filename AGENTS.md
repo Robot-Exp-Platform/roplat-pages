@@ -110,10 +110,12 @@ mkdocs gh-deploy --force
 ### 6.3 代码块
 
 * 启用了 `content.code.copy` / `content.code.select` / `content.code.annotate`：
+
   ```rust
   // (1)!
   pub trait Node: Send + Sync { /* ... */ }
   ```
+
   注解在文档末尾用 `1.  解释...` 给出。
 
 ### 6.4 图
