@@ -1,185 +1,110 @@
 # 编译管线
 
-`#[roplat::system]` 宏在编译期完成从 DSL 到可执行 async Rust 代码的全部转换。本文详解这一过程。
+Roplat 的 Rust-only 项目可以像普通 Rust crate 一样构建。只有当你使用 C++ / Python 节点、跨语言消息或生成文件时，才需要 `roplat_build`。
 
-## 总览
+## Two-pass build
 
 ```mermaid
-graph TB
-    subgraph "Phase 1: 解析"
-        A["用户代码<br/>#[roplat::system] async fn main()"] --> B["DSL Parser"]
-        B --> C["Scope 树"]
-    end
+sequenceDiagram
+    participant Cargo
+    participant BuildRS as build.rs
+    participant Check as cargo check -p crate
+    participant Macros as roplat macros
+    participant Gen as roplat_build
 
-    subgraph "Phase 2: 图构建"
-        C --> D["FlowGraph"]
-        D --> E["ReducibleGraph"]
-    end
-
-    subgraph "Phase 3: 分析"
-        E --> F["拓扑排序"]
-        F --> G["死锁检测 (DFS)"]
-        G -->|"有环路"| ERR["编译错误"]
-    end
-
-    subgraph "Phase 4: 规约"
-        G -->|"无环路"| H["图规约 R0-R4"]
-        H --> I["Schedule"]
-    end
-
-    subgraph "Phase 5: 代码生成"
-        I --> J["TokenStream"]
-        J --> K["async Rust 代码"]
-    end
+    Cargo->>BuildRS: run build.rs
+    BuildRS->>Check: ROPLAT_PHASE=EXTRACT
+    Check->>Macros: expand #[roplat_msg] / #[roplat::node]
+    Macros-->>BuildRS: write JSON manifests
+    BuildRS->>Gen: read manifests
+    Gen-->>BuildRS: generate cpp/py files
+    BuildRS-->>Cargo: optional native build
 ```
 
-## Phase 1: DSL 解析
-
-`#[roplat::system]` 接收用户写的函数体，解析其中的特殊语法：
+## 最小 build.rs
 
 ```rust
-#[roplat::system]
-async fn main() {
-    let mut a = NodeA::new();
-    let mut b = NodeB::new();
-    let mut c = NodeC::new();
+fn main() {
+    if std::env::var("ROPLAT_PHASE").as_deref() == Ok("EXTRACT") {
+        return;
+    }
 
-    timer >> {
-        a >> b >> c;
-    };
+    roplat_build::BuildOrchestrator::new()
+        .build()
+        .expect("roplat code generation failed");
 }
 ```
 
-解析器识别以下结构：
+一定要在 `ROPLAT_PHASE=EXTRACT` 时直接返回，否则 extract 子进程会递归触发完整 build。
 
-| 语法 | 解析为 |
-|:-----|:------|
-| `let mut x = Expr;` | 节点声明（收集到顶层 scope） |
-| `rhythm >> { ... }` | 节律域（ScopedGroup） |
-| `a >> b` | 数据流边（FlowEdge） |
-| `match / if` | 条件分支节点 |
+## C++ native build
 
-产出：一棵 **Scope 树**，每个节律域是一个 scope，scope 内记录节点列表和边。
+```rust
+use roplat_build::{BuildOrchestrator, NativeBackend, NativeBuildConfig};
 
-## Phase 2: 图构建
+fn main() {
+    if std::env::var("ROPLAT_PHASE").as_deref() == Ok("EXTRACT") {
+        return;
+    }
 
-Scope 树被转换为 `FlowGraph`：
+    let backend = NativeBackend::from_env("ROPLAT_NATIVE_BACKEND")
+        .unwrap_or(NativeBackend::Cc);
 
-- 每个节点变成图中的顶点
-- 每条 `>>` 变成有向边
-- 跨 scope 的引用标记为**跨域边**
+    let native = NativeBuildConfig::new()
+        .backend(backend)
+        .library_name("my_robot_cpp")
+        .include_dir("cpp/src")
+        .source("cpp/src/support.cpp");
 
-```text
-FlowGraph {
-    nodes: [a, b, c],
-    edges: [(a→b), (b→c)],
-    groups: [Group { rhythm: timer, nodes: [a, b, c] }]
+    BuildOrchestrator::new()
+        .native_build(native)
+        .build()
+        .expect("roplat code generation failed");
 }
 ```
 
-然后包装为 `ReducibleGraph`，这是图规约算法的工作对象。
+`NativeBackend::Cc` 适合简单项目；`NativeBackend::CMake` 适合需要 CMake、packages、复杂链接的项目。
 
-## Phase 3: 拓扑分析
+## 生成目录
 
-### 依赖排序
-
-对每个 scope 内的节点进行拓扑排序，确保执行顺序正确。
-
-### 死锁检测
-
-对跨域通道依赖进行 DFS 分析：
+默认目录：
 
 ```text
-Group 0 (timer_1khz): [sensor, ctrl]
-Group 1 (timer_30hz): [camera, detect]
-
-跨域边: ctrl → detect (Group 0 → Group 1)
-         detect → ctrl (Group 1 → Group 0)  ← 构成环路！
-
-error: 检测到跨组死锁环路: [group_0] → [group_1] → [group_0]
+cpp/
+  roplat_gen/      # generated C headers, base classes, FFI cpp
+  src/             # user C++ implementation
+py/
+  roplat_gen/      # generated ctypes stubs and base classes
+  *.py             # user Python implementation
 ```
 
-环路检测在**编译期**完成——不存在运行时死锁的可能。
+原则：
 
-## Phase 4: 图规约
+- `roplat_gen` 每次构建可覆盖。
+- 用户文件只在缺失时生成。
+- 修 generated code 的正确方式是修 Rust 声明或 roplat_build，而不是手改生成物。
 
-核心算法反复应用 R0-R4 规则，将图化简为单个调度节点：
+## hooks
 
-### R0: 单节点规则
+`BuildOrchestrator` 支持自定义 hook：
 
-```text
-[A] → A.process(input).await
+```rust
+roplat_build::BuildOrchestrator::new()
+    .after_generate(|ctx| {
+        println!("cargo:warning=generated files in {}", ctx.gen_py_dir.display());
+        Ok(())
+    })
+    .build()?;
 ```
 
-### R1: 串行融合
+适合在生成后复制资产、打印路径或接入额外工具。
 
-```text
-A → B → C
-    ↓
-SeqNode([A, B, C])
+## 常见环境变量
 
-生成:
-  let o1 = a.process(input).await;
-  let o2 = b.process(o1).await;
-  c.process(o2).await;
-```
+| 变量 | 作用 |
+|---|---|
+| `ROPLAT_PHASE=EXTRACT` | 内部 extract 阶段 |
+| `ROPLAT_MANIFEST_DIR` | 宏写 manifest 的目录 |
+| `ROPLAT_NATIVE_BACKEND=cc/cmake` | 选择 C++ native 后端 |
 
-### R2: 并行融合
-
-```text
-    ┌→ B
-A ──┤
-    └→ C
-
-    ↓
-ParNode(A, [B, C])
-
-生成:
-  let out = a.process(input).await;
-  let (rb, rc) = tokio::join!(
-      b.process(out.clone()),
-      c.process(out),
-  );
-```
-
-### R3: 拓扑排序
-
-对无法直接融合的复杂图，按拓扑序排列，然后递归应用 R1/R2。
-
-### R4: 通道切割
-
-跨域边被替换为 channel Tx/Rx：
-
-```text
-Group 0: [..., A]  →  Group 1: [B, ...]
-         跨域边 A→B
-
-    ↓
-
-Group 0: [..., A, Tx]    // A 的输出写入 channel
-Group 1: [Rx, B, ...]    // B 从 channel 读取
-```
-
-通道类型根据拓扑自动选择：
-
-- 1:N 扇出 → triple buffer (SPMC)
-- 1:1 队列 → ring buffer (SPSC)
-
-## Phase 5: 代码生成
-
-规约完成后，`Schedule` 被展开为 `TokenStream`——完全确定的、无动态调度的 async Rust 代码。
-
-最终生成的代码等价于手写的 `async fn`，没有 `dyn`、没有 `Box`、没有运行时调度器。
-
-## 优化效果
-
-| 指标 | 传统方案（如 ROS 2） | Roplat |
-|:-----|:-----|:------|
-| 每 tick 调度开销 | ~10μs（executor 查找 + 虚调用） | ~0ns（内联 await 链） |
-| 堆分配 | 每消息 1+ 次 | 0 次 |
-| 类型检查 | 运行时反序列化 | 编译期 |
-| 死锁发现 | 部署后才暴露 | `cargo build` |
-
----
-
-返回 [架构参考总览](00%20Overview.md)
+下游用户通常只需要设置 `ROPLAT_NATIVE_BACKEND`。

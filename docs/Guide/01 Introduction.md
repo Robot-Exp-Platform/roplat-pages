@@ -1,27 +1,46 @@
 # 项目介绍
 
-## Roplat 是什么
+Roplat 是一个面向机器人应用的 Rust 框架。它的目标不是复制 ROS 2 的运行时发现模型，而是提供一种更静态、更可检查、更适合实验复现和控制链路的组织方式。
 
-Roplat（**Ro**bot **Plat**form）是一个基于 Rust 的机器人操作平台。它的核心目标是：
+一句话概括：
 
-> **把机器人系统中常见的运行时错误，前移到编译期解决。**
+> 用普通 Rust 类型写节点，用 Rhythm 表达执行节奏，用 `#[roplat::system]` 把节点编译成确定的数据流图。
 
-在传统的 ROS / ROS 2 开发中，你可能经历过这些痛苦：
+## Roplat 解决什么问题
 
-- 消息类型写错，运行时才发现话题连不上
-- 多线程回调导致不可复现的死锁
-- Launch 文件改了一个参数，整个系统莫名挂掉
-- 调试一个时序 bug 花了三天，最后发现是两个节点的执行顺序不确定
+机器人系统里常见的问题往往不是“单个函数写错了”，而是系统边界出了问题：
 
-**Roplat 用 Rust 的类型系统、过程宏和编译期分析，将这些问题在 `cargo build` 阶段全部拦截。**
+- 节点 A 的输出类型和节点 B 的输入类型不一致。
+- 一个周期任务被手写成散落在多个文件里的循环和 `tokio::spawn`。
+- C++、Python、Rust 节点之间的消息布局靠手工约定维护。
+- 拓扑写在 launch 文件、回调和全局状态里，人脑很难确认真实执行图。
+- 真机实验时才发现某条通道没有连接、某个进程 schema 不匹配、某个节点执行顺序不稳定。
 
-## 三层核心抽象
+Roplat 的思路是把这些关系尽量提前到代码和构建阶段表达：
 
-Roplat 的整个设计围绕三个正交概念：
+- 数据流拓扑写在 `#[roplat::system]` 里。
+- 周期、事件、计数、迭代、回放由 Rhythm 负责。
+- 节点只表达一次计算，不自己管理调度。
+- 消息类型由 Rust 结构体驱动，生成 C++ 头文件和 Python stub。
+- C++ / Python 节点由 Rust puppet 声明，`roplat_build` 生成桥接文件。
 
-### Node — 计算单元
+## 适合的场景
 
-节点是最小的计算单元。它接收输入、产出输出，有明确的生命周期：
+Roplat 特别适合这些项目：
+
+- 机器人控制链路：传感器、滤波、控制器、驱动输出之间有固定拓扑。
+- 多语言实验系统：核心框架用 Rust，已有算法在 C++ 或 Python 中。
+- 可复现实验：需要计数节律、迭代节律、录制回放或明确的拓扑图。
+- 进程内高确定性、进程间可组合的系统：单进程内部静态编排，跨进程用 IPC。
+- 下游驱动库和 benchmark：希望把节点、节律、通信方式都写成可检查的工程结构。
+
+它不适合把所有东西都运行时动态注册、动态发现、动态重连的应用模型。Roplat 可以和外部系统协作，但它的强项是“代码里已知的图，构建时尽量检查”。
+
+## 三个核心抽象
+
+### Node：一次计算
+
+`Node` 是最小计算单元。它只关心输入和输出：
 
 ```rust
 pub trait Node: Send + Sync {
@@ -35,112 +54,72 @@ pub trait Node: Send + Sync {
 }
 ```
 
-节点是**纯计算**——它不关心自己何时被调用、被谁调用、与谁连接。这些都由更上层的抽象管理。
+一个节点不应该自己决定“每 10ms 跑一次”。它只实现“给我一次输入，我产出一次输出”。
 
-### Rhythm — 时间驱动
+### Rhythm：什么时候运行
 
-节律源决定"什么时候执行"。它驱动一组节点按特定节奏运行：
+`Rhythm` 负责执行节奏。内置常用节律包括：
 
-```rust
-pub trait Rhythm {
-    type Yield: Send;    // 给节点的输入（如时间戳、传感器数据）
-    type Feed;           // 节点的输出反馈
+| 节律 | 用途 |
+|---|---|
+| `SysTimer` | 固定周期控制、采样、状态同步 |
+| `CountRhythm` | 测试、示例、有限步仿真 |
+| `EventRhythm<T>` | 外部事件触发 |
+| Iterator rhythm | 数据集、轨迹、离线输入 |
+| Replay rhythm | 确定性录制与回放 |
 
-    fn drive<N, F, Fut>(&mut self, nodes: N, op_domain: F)
-        -> impl Future<Output = Self::Output> + Send;
-}
-```
+当你想写 `loop { ... }` 时，先问：这个循环是不是一个 Rhythm？
 
-内置四种节律源：
+### System：谁连接谁
 
-| 节律源 | 用途 | 示例 |
-|:------|:-----|:-----|
-| `SysTimer` | 固定周期定时器 | 控制回路 100Hz |
-| `CountRhythm` | 执行固定次数 | 初始化序列 |
-| `EventRhythm` | 外部事件触发 | 传感器帧到达 |
-| `Iterator` 适配器 | 数据驱动 | 离线回放 / 批处理 |
-
-### System — 编排容器
-
-系统用声明式 DSL 描述节点之间的连接关系，编译期自动生成调度代码：
+`#[roplat::system]` 是拓扑入口。你用 `>>` 描述数据流：
 
 ```rust
 #[roplat::system]
 async fn main() {
-    let mut source = SensorNode::new();
-    let mut filter = KalmanFilter::new();
-    let mut ctrl   = PIDController::new();
-    let mut motor  = MotorDriver::new();
+    let mut source = Source::default();
+    let mut filter = Filter::new();
+    let mut sink = Sink;
+    let (_, mut timer) = roplat::rhythm::create_count_rhythm(3);
 
-    timer_100hz >> {
-        source >> filter >> ctrl >> motor;
+    timer >> {
+        source >> filter >> sink;
     };
 }
 ```
 
-`>>` 表达数据流方向，作用域 `{}` 表达并发边界。**代码即拓扑图**——你看到的代码结构就是系统的执行结构。
+这段代码表达的是：
 
-## 编译期做了什么
+1. `timer` 拥有这个执行域。
+2. `source` 的输出进入 `filter`。
+3. `filter` 的输出进入 `sink`。
+4. 最后的分号表示本轮不向 Rhythm 反馈额外状态。
 
-当你写下 `#[roplat::system]` 并编译时，Roplat 的过程宏会：
+## 多语言不是附加脚本
 
-1. **解析 DSL** — 将 `>>` 操作符和作用域转换为有向图（FlowGraph）
-2. **图规约** — 应用 R0-R4 五条规则，将复杂拓扑规约为最优调度序列
-3. **死锁检测** — 分析跨节律域的通道依赖，发现环路立即报错
-4. **代码生成** — 产出完全展开的 `async` Rust 代码，无运行时调度开销
-5. **类型检查** — Rust 编译器接手，验证所有节点连接的类型匹配
+Roplat 的多语言不是“Rust 运行时去找一些 Python 脚本”。推荐流程是：
 
-最终产物是**零开销的静态调度代码**——没有动态分发、没有 vtable、没有运行时反射。
+1. 在 Rust 中定义消息。
+2. 在 Rust 中声明 C++ / Python puppet 节点。
+3. 通过 `build.rs` 调用 `roplat_build`。
+4. 构建时生成 C++ / Python 基类、用户文件、FFI 桥接和 stub。
+5. 在 System DSL 中像普通节点一样连接它们。
 
-## 多语言支持
+Python 运行时支持位于 `roplat_py`，不会强制污染纯 Rust 下游 crate。
 
-Roplat 不要求所有节点都用 Rust 写。通过 `#[roplat::node]` 宏的傀儡模式，你可以声明 C++ 或 Python 实现的节点：
+## 项目组成
 
-```rust
-#[roplat::node(lang = "cpp", input(data, SensorData), output(cmd, MotorCommand))]
-pub struct CppController { pub gain: f64 }
-
-#[roplat::node(lang = "py", input(image, CameraFrame), output(det, Detection))]
-pub struct PyDetector { pub threshold: f64 }
-```
-
-构建系统会自动生成：
-
-- C++ 头文件和 FFI 桥接代码
-- Python ctypes 绑定和基类
-- 消息类型的跨语言定义
-
-三种语言的节点在同一个 `system!` 中无缝连接，类型安全由编译器保证。
-
-## 通讯模型
-
-节点间的数据传递有两条路径：
-
-**主流通讯**（Primary）：节点的 `Input → Output` 链路，由 `>>` 操作符在 system DSL 中声明，编译期确定。
-
-**旁路通讯**（Sideband）：用于状态共享和跨域通信的并行通道：
-
-| 原语 | 语义 | 适用场景 |
-|:-----|:-----|:---------|
-| 三缓冲（Triple Buffer） | 始终读最新值，写端无阻塞 | 传感器状态、位姿同步 |
-| 环形队列（Ring Buffer） | FIFO 有序，无锁 SPSC | 命令序列、事件日志 |
-
-两种原语都是 **lock-free** 实现，跨 Rust / C++ / Python 语言边界透明可用。
-
-## 项目结构
-
-```text
-roplat/               # 核心运行时（Node, Rhythm, Comm, TypeBinding）
-roplat_macros/         # 过程宏（system!, node!, roplat_msg!）
-roplat_build/          # 构建期代码生成（C++ 头文件、Python 存根）
-roplat_launch/         # YAML 启动系统（ArchConfig, ParamConfig）
-roplat_cpp/            # C++ 封装层
-roplat_py/             # Python 封装层
-cargo-roplat/          # CLI 工具（generate, run, topology）
-```
+| crate | 面向下游的作用 |
+|---|---|
+| `roplat` | 核心 API、宏重导出、Node、Rhythm、通信、错误类型 |
+| `roplat_build` | `build.rs` 里的多语言代码生成和 native build |
+| `roplat_cpp` / `roplat_cpp_msg` | C++ 节点和透明消息支持 |
+| `roplat_py` | Python 节点运行时桥接和 PyO3 依赖 |
+| `roplat_launch` | YAML 架构和参数模型 |
+| `cargo-roplat` | generate、run、topology、expand、IPC 诊断等 CLI |
 
 ## 下一步
 
-- **想动手写代码？** → [快速开始](../QuickStart/00%20快速开始总览.md)
-- **想深入理解概念？** → [Node 节点](../Concepts/01%20Node.md)
-- **想参与开发？** → [项目入门](../Controbuction/0%20项目入门.md)
+- 想立刻跑通项目：读 [快速开始总览](../QuickStart/00%20快速开始总览.md)。
+- 想先理解抽象：读 [概念导读](../Concepts/00%20概念导读.md)。
+- 想知道为什么这样设计：读 [设计哲学](02%20Design.md)。

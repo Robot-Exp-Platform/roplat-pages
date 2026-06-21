@@ -1,4 +1,5 @@
-site_name: Roplat Documentation
+site_name: Roplat
+site_description: Code-first robot application framework for Rust, C++ and Python.
 
 nav:
   - 首页: index.md
@@ -7,6 +8,7 @@ nav:
     - 设计哲学: Guide/02 Design.md
     - 学习路线: Guide/03 Roadmap.md
   - 核心概念:
+    - 概念导读: Concepts/00 概念导读.md
     - 节点 Node: Concepts/01 Node.md
     - 节律 Rhythm: Concepts/02 Rhythm.md
     - 系统 System: Concepts/03 System.md
@@ -38,8 +40,7 @@ nav:
     - 启动文件协议: Controbuction/10 启动文件协议.md
     - 确定性录制与回放: Controbuction/11 确定性录制与回放.md
     - 进程间通讯: Controbuction/12 进程间通讯.md
-  - 开发日志:
-    - Log/
+  - 开发日志: Log/index.md
 
 theme:
   logo: assets/icon.png
@@ -50,6 +51,9 @@ theme:
     - content.code.select
     - content.code.annotate
     - content.tabs.link
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
     - navigation.footer
   icon:
     repo: fontawesome/brands/git-alt
@@ -81,6 +85,10 @@ plugins:
   - git-authors:
       show_contribution: true
       show_line_count: true
+
+exclude_docs: |
+  Log/2026-*.md
+  QuickStart/07*.md
 
 markdown_extensions:
   - pymdownx.arithmatex:
@@ -114,7 +122,7 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
 
-copyright: 内部使用，切勿外传
+copyright: Copyright &copy; Robot-Exp Platform contributors
 
 extra_javascript:
   - javascripts/mathjax.js

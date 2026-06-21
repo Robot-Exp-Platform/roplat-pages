@@ -1,60 +1,113 @@
 # 扩展 Python 节点
 
-本章在上一章基础上增加 Python 节点镜像。
+Python 支持位于 `roplat_py`，这样纯 Rust 或 C++ 下游不会被 PyO3 拖慢编译。
 
-## 1. 扩展 `src/puppet.rs`
+## 1. 增加依赖
 
-追加：
+`Cargo.toml`：
+
+```toml
+[dependencies]
+roplat = { path = "../roplat/roplat" }
+roplat_py = { path = "../roplat/roplat_py" }
+
+[build-dependencies]
+roplat_build = { path = "../roplat/roplat_build" }
+```
+
+如果你手写 PyO3 代码，使用 `roplat_py::pyo3`，不要使用 `roplat::pyo3`。
+
+## 2. 定义消息
+
+`src/msg.rs`：
 
 ```rust
+#[roplat::roplat_msg(version = 1)]
+#[repr(C)]
+#[derive(Copy, Clone, Debug)]
+pub struct Packet {
+    pub id: u64,
+    pub value: f64,
+}
+```
+
+## 3. 声明 Python puppet
+
+`src/puppet.rs`：
+
+```rust
+use crate::msg::Packet;
+
 #[roplat::node(
     lang = "py",
-    input(sensor_input, SensorData),
-    output(plan_output, MotorCommand),
+    input(input, Packet),
+    output(output, Packet),
 )]
-pub struct PyPlanner {
-    pub target_x: f64,
-    pub target_y: f64,
-    pub max_speed: f64,
+pub struct PyForward {
+    pub bias: f64,
 }
 
-impl PyPlanner {
-    pub fn new() -> Self {
-        Self {
-            target_x: 0.0,
-            target_y: 0.0,
-            max_speed: 1.0,
-            ..Self::default()
-        }
+impl PyForward {
+    pub fn with_bias(bias: f64) -> Self {
+        Self { bias, ..Default::default() }
     }
 }
 ```
 
-## 2. 扩展 `main.rs`
+## 4. 配置 build.rs
 
 ```rust
-let mut py = puppet::PyPlanner::new();
-py.target_x = 10.0;
-py.target_y = 20.0;
-py.max_speed = 5.0;
-println!("PyPlanner target=({}, {})", py.target_x, py.target_y);
+fn main() {
+    if std::env::var("ROPLAT_PHASE").as_deref() == Ok("EXTRACT") {
+        return;
+    }
+
+    roplat_build::BuildOrchestrator::new()
+        .build()
+        .expect("roplat code generation failed");
+
+    println!("cargo:rerun-if-changed=src/msg.rs");
+    println!("cargo:rerun-if-changed=src/puppet.rs");
+    println!("cargo:rerun-if-changed=py/");
+    println!("cargo:rerun-if-changed=build.rs");
+}
 ```
 
-## 3. 生成后目录（tree）
-
-```text
-rust_starter/
-└─ py/
-   ├─ roplat_gen/
-   │  └─ py_planner_base.py
-   └─ py_planner.py
-```
-
-## 4. 验证
+## 5. 生成并实现 Python 文件
 
 ```powershell
-cargo build
-cargo run
+cargo check
 ```
 
-通过后进入 [实现数据互通](04%20实现数据互通.md)。
+生成结构：
+
+```text
+py/
+  roplat_gen/        # generated, do not edit
+  py_forward.py      # user-editable
+```
+
+在用户文件里实现 `process`。生成 glue 会在运行时把 `py/` 和 `py/roplat_gen/` 放入 Python import path。
+
+## 6. 在系统里使用
+
+```rust
+#[roplat::system]
+async fn main() {
+    let mut source = Source::default();
+    let mut py = puppet::PyForward::with_bias(0.5);
+    let mut sink = Sink;
+    let (_, mut timer) = roplat::rhythm::create_count_rhythm(1);
+
+    timer >> {
+        source >> py >> sink;
+    };
+}
+```
+
+## 常见问题
+
+- Python 节点 crate 必须显式依赖 `roplat_py`。
+- 不要编辑 `py/roplat_gen`。
+- 用户 Python 文件只在缺失时生成。
+- 如果 import 失败，先检查 `cargo check` 是否生成了 stub，再检查文件名和类名是否与 puppet 对应。

@@ -5,101 +5,103 @@ hide:
 
 # Roplat
 
-<div style="text-align: center; margin: 2em 0;">
-<em>编译期安全 · 静态确定调度 · 多语言透明互通</em>
+<div style="text-align: center; margin: 2em 0 2.5em;">
+<strong>Code-first robot applications for Rust, C++ and Python.</strong><br>
+<em>用 Node / Rhythm / System 把机器人系统的拓扑、节奏和类型关系提前交给编译器检查。</em>
 </div>
 
-**Roplat** 是一个面向运行期安全的机器人操作平台。它将 ROS 中常见的运行时崩溃——死锁、类型不匹配、拓扑混乱——**前移到编译期**，让你在 `cargo build` 通过的那一刻就获得对系统行为的信心。
+**Roplat** 是一个 Rust 编写的机器人应用框架。它不把机器人程序组织成“若干运行时发现的节点和话题”，而是让你在代码中直接声明计算节点、节律域和数据流拓扑，由过程宏在编译期展开为确定的执行图。
+
+它适合这样的场景：
+
+- 你希望控制链路、感知管线或实验系统有明确的数据流和执行顺序。
+- 你不想为了简单周期任务手写 `loop`、`sleep`、`tokio::spawn` 和通道粘合代码。
+- 你需要在同一个系统里组合 Rust、C++、Python 节点，但不想长期维护手写 FFI。
+- 你希望消息类型、图拓扑、跨语言绑定和 IPC schema 尽早失败，而不是在真机实验时失败。
 
 ```rust
 #[roplat::system]
-async fn robot() {
-    let mut sensor = SensorNode::new();
-    let mut ctrl   = ControllerNode::new();
-    let mut motor  = MotorNode::new();
+async fn main() {
+    let mut source = SensorNode::new();
+    let mut filter = FilterNode::new();
+    let mut ctrl = ControllerNode::new();
+    let mut motor = MotorNode::new();
+    let mut timer = roplat::rhythm::SysTimer::new(std::time::Duration::from_millis(10));
 
-    timer_100hz >> {
-        sensor >> ctrl >> motor;
+    timer >> {
+        source >> filter >> ctrl >> motor;
     };
 }
 ```
 
-## 为什么选择 Roplat
+## 核心优势
 
 <div class="grid cards" markdown>
 
-- :material-shield-check:{ .lg .middle } **编译期安全**
+- :material-graph-outline:{ .lg .middle } **代码即拓扑**
 
     ---
 
-    类型不匹配、死锁环路、拓扑错误——全部在编译期捕获，而非在实验现场崩溃。
+    用 `#[roplat::system]` 和 `>>` 描述节点连接。图结构留在代码里，而不是散落在回调、线程和运行时注册表中。
 
-- :material-clock-fast:{ .lg .middle } **零开销确定性**
-
-    ---
-
-    调度图编译期规约为静态代码，节律驱动零堆分配，性能可预测到每个 tick。
-
-- :material-translate:{ .lg .middle } **多语言透明互通**
+- :material-clock-fast:{ .lg .middle } **节律域驱动**
 
     ---
 
-    Rust / C++ / Python 节点在同一系统中无缝协作，类型绑定自动生成，无需手写 FFI。
+    周期、事件、计数、迭代和回放都由 Rhythm 表达。业务代码不需要手写调度循环。
 
-- :material-file-tree:{ .lg .middle } **声明式系统 DSL**
+- :material-shield-check:{ .lg .middle } **编译期检查**
 
     ---
 
-    用 `>>` 操作符声明数据流，用作用域表达并发边界，代码即拓扑图。
+    节点输入输出、消息布局、系统拓扑、部分死锁风险和跨语言绑定尽可能在构建阶段暴露。
+
+- :material-translate:{ .lg .middle } **多语言组合**
+
+    ---
+
+    Rust 原生节点是基础；C++ 与 Python 节点通过 `roplat_build` 和语言桥接生成 glue code。
 
 </div>
 
-## 核心架构一览
+## 三个核心抽象
 
 ```mermaid
-graph LR
-    subgraph "编译期"
-        DSL["system! DSL"] --> Parse["解析"]
-        Parse --> Graph["FlowGraph"]
-        Graph --> Reduce["图规约 R0-R4"]
-        Reduce --> Codegen["代码生成"]
-    end
-
-    subgraph "运行期"
-        Rhythm["Rhythm 节律源"] --> Drive["drive()"]
-        Drive --> NodeA["Node A"]
-        Drive --> NodeB["Node B"]
-        NodeA -->|channel| NodeB
-    end
-
-    Codegen -.-> Drive
+flowchart LR
+    Rhythm["Rhythm<br>什么时候运行"] --> System["System DSL<br>谁连接谁"]
+    NodeA["Node<br>做一次计算"] --> System
+    System --> Codegen["Compile-time expansion"]
+    Codegen --> Runtime["Deterministic async execution"]
 ```
 
-## 与 ROS 2 的核心差异
+| 抽象 | 负责什么 | 你应该写什么 |
+|---|---|---|
+| `Node` | 单次输入到输出的计算 | 控制器、滤波器、驱动适配器、感知处理 |
+| `Rhythm` | 执行节奏和触发源 | 定时器、事件触发、计数测试、离线迭代、回放 |
+| `System` | 节点拓扑和数据流 | `timer >> { sensor >> filter >> ctrl; };` |
 
-| 维度 | Roplat | ROS 2 |
-|:-----|:-------|:------|
-| **类型检查** | 编译期，泛型约束 | 运行期，MD5 哈希 |
-| **调度模型** | 静态确定（图规约） | 动态黑盒（Executor） |
-| **死锁检测** | 编译期（通道环路分析） | 无 |
-| **内存安全** | Rust 所有权系统保证 | 依赖 C++ 编程纪律 |
-| **多语言** | 编译期绑定生成 | 运行时 DDS 序列化 |
-| **拓扑表达** | 代码即图（`>>` DSL） | Launch XML / YAML |
-
-## 开始使用
+## 你从哪里开始
 
 <div class="grid cards" markdown>
 
-- **新手？从这里开始**
+- **第一次了解 Roplat**
 
-    [:octicons-arrow-right-24: 项目介绍](Guide/01 Introduction.md)
+    [:octicons-arrow-right-24: 项目介绍](Guide/01%20Introduction.md)
 
-- **想快速上手？**
+- **马上写一个项目**
 
-    [:octicons-arrow-right-24: 快速开始](QuickStart/00 快速开始总览.md)
+    [:octicons-arrow-right-24: 快速开始总览](QuickStart/00%20快速开始总览.md)
 
-- **想理解设计？**
+- **理解 Node / Rhythm / System**
 
-    [:octicons-arrow-right-24: 核心概念](Concepts/01 Node.md)
+    [:octicons-arrow-right-24: 概念导读](Concepts/00%20概念导读.md)
+
+- **集成 C++ / Python / build.rs**
+
+    [:octicons-arrow-right-24: 编译管线](Architecture/01%20Pipeline.md)
 
 </div>
+
+## 当前边界
+
+Roplat 的核心 Node / Rhythm / System、多语言桥接、IPC MVP、录制回放核心 API 已经可用。部分更高层接口仍在演进，例如 `#[system(record = ...)]` 风格的完整宏集成、更多本地 IPC 后端、以及 resource 子系统的重新启用。文档中会明确区分“推荐使用路径”和“内部/实验性能力”。

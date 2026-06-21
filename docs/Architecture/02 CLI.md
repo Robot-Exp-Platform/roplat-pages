@@ -1,136 +1,99 @@
-# cargo-roplat CLI
+# CLI 工具
 
-`cargo-roplat` 是 Roplat 的命令行工具，提供代码生成、系统运行和拓扑可视化功能。
+`cargo-roplat` 提供 `cargo roplat ...` 子命令，用于生成、验证、可视化和诊断。
 
-## 安装
-
-```powershell
-# 从源码安装（workspace 内）
-cargo install --path cargo-roplat
-
-# 安装后作为 cargo 子命令使用
-cargo roplat --help
-```
-
-## 子命令
-
-### generate — 代码生成
-
-从 YAML 架构文件生成 Rust 代码：
+## 常用命令
 
 ```powershell
-cargo roplat generate arch.yaml
-cargo roplat generate arch.yaml --output src/generated.rs
+cargo roplat validate arch.yaml
+cargo roplat generate arch.yaml --out-dir roplat
+cargo roplat codegen arch.yaml --output roplat/arch.rs
+cargo roplat run arch.yaml params.yaml
+cargo roplat topology arch.yaml --format mermaid
+cargo roplat expand src/main.rs --output expanded.rs
+cargo roplat ipc ls
 ```
 
-### run — 编译并运行
+## YAML launch
 
-编译 YAML 描述的系统并运行：
-
-```powershell
-cargo roplat run arch.yaml
-```
-
-### topology — 拓扑可视化
-
-生成系统拓扑图：
-
-```powershell
-# Mermaid 格式（可直接嵌入 Markdown）
-cargo roplat topology arch.yaml --format mermaid -o topology.md
-
-# DOT 格式（Graphviz）
-cargo roplat topology arch.yaml --format dot -o topology.dot
-
-# 从 DOT 生成图片
-dot -Tpng topology.dot -o topology.png
-```
-
-Mermaid 输出示例：
-
-```mermaid
-graph LR
-    sensor["SensorNode"]
-    filter["KalmanFilter"]
-    ctrl["PIDController"]
-    motor["MotorDriver"]
-
-    sensor --> filter
-    filter --> ctrl
-    ctrl --> motor
-
-    subgraph "timer_100hz"
-        sensor
-        filter
-        ctrl
-        motor
-    end
-```
-
-## YAML 架构文件格式
+arch YAML 大致形状：
 
 ```yaml
-# 节律源定义
+version: "0.1"
+default_crate: my_robot
+
 rhythms:
-  - id: control_timer
-    type: SysTimer
-    interval_ms: 10         # 100Hz
+  - id: timer
+    type: roplat::rhythm::CountRhythm
 
-  - id: vision_timer
-    type: SysTimer
-    interval_ms: 33          # ~30Hz
-
-# 节点定义
 nodes:
-  - id: sensor
-    type: SensorNode
-  - id: filter
-    type: KalmanFilter
-  - id: controller
-    type: PIDController
-    params:
-      kp: 2.0
-      ki: 0.1
-      kd: 0.05
-  - id: motor
-    type: MotorDriver
+  - id: source
+    class: Source
+    rhythm: timer
+  - id: sink
+    class: Sink
+    rhythm: timer
 
-# 连接（数据流）
-connections:
-  - from: sensor
-    to: filter
-  - from: filter
-    to: controller
-  - from: controller
-    to: motor
-
-# 节律域分组
-groups:
-  - rhythm: control_timer
-    nodes: [sensor, filter, controller, motor]
+topology:
+  - from: source
+    to: sink
 ```
 
-## 与 System DSL 的关系
+使用 `validate` 先检查：
 
-YAML 文件和 System DSL 是等价的两种描述方式：
-
-| 方面 | System DSL (`>>`) | YAML 文件 |
-|:-----|:----------|:---------|
-| 定义方式 | Rust 代码内 | 外部文件 |
-| 编辑工具 | IDE + Rust 分析 | 任何文本编辑器 |
-| 类型检查 | 编译期 | 生成代码后编译期 |
-| 适用场景 | 小型系统、原型 | 大型系统、运维调整 |
-
-两者可以混合使用：
-
-```rust
-#[roplat::system(file = "arch.yaml")]
-async fn main() {
-    // YAML 拓扑自动注入
-    // 可以在此追加 DSL 代码
-}
+```powershell
+cargo roplat validate arch.yaml
 ```
 
----
+## 生成入口文件
 
-返回 [架构参考总览](00%20Overview.md)
+```powershell
+cargo roplat generate arch.yaml --out-dir roplat
+```
+
+如果 CLI 提示添加 bin target，在 `Cargo.toml` 中加入：
+
+```toml
+[[bin]]
+name = "arch"
+path = "roplat/arch.rs"
+```
+
+## 拓扑图
+
+```powershell
+cargo roplat topology arch.yaml --format mermaid
+cargo roplat topology arch.yaml --format dot --output topology.dot
+```
+
+适合 code review、论文图、调试 launch 配置。
+
+## 展开 system 宏
+
+```powershell
+cargo roplat expand src/main.rs --output expanded.rs
+```
+
+当你不理解 `#[roplat::system]` 生成了什么时，用 expand 看展开结果。
+
+## IPC 诊断
+
+```powershell
+cargo roplat ipc ls
+cargo roplat ipc ls --json
+cargo roplat ipc introspect "roplat-ipc://<namespace>/<name>?msg=<schema>&v=<version>"
+```
+
+用于查看 rendezvous 目录中的活跃端点、schema、版本、pid 和地址。
+
+## 什么时候用 CLI
+
+| 需求 | 命令 |
+|---|---|
+| 检查 launch YAML | `validate` |
+| 从 YAML 生成 Rust entry | `generate` / `codegen` |
+| 看系统拓扑 | `topology` |
+| 看宏展开 | `expand` |
+| 查 IPC 端点 | `ipc ls` / `ipc introspect` |
+
+普通 Rust-only 项目不一定需要 CLI；直接写 `#[roplat::system]` 往往更简单。
