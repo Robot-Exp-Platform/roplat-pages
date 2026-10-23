@@ -1,0 +1,12 @@
+# Readers' programs extracted from the site's Markdown by scripts/verify_examples.py.
+[package]
+name = "roplat-pages-examples"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+[workspace]
+
+[dependencies]
+roplat = "0.5.0"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "sync", "time"] }

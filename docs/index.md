@@ -3,105 +3,82 @@ hide:
   - navigation
 ---
 
-# Roplat
+# roplat
 
-<div style="text-align: center; margin: 2em 0 2.5em;">
-<strong>Code-first robot applications for Rust, C++ and Python.</strong><br>
-<em>用 Node / Rhythm / System 把机器人系统的拓扑、节奏和类型关系提前交给编译器检查。</em>
+!!! warning "仍在快速迭代"
+    roplat 的 API 还不稳定，任何版本之间都可能出现不兼容的变更，暂不建议用于生产环境。本站对应 **roplat 0.5.0**。
+
+<div class="hero" markdown>
+
+roplat 用 Rust 组织机器人程序：**Node** 完成一次计算或设备操作，**Rhythm** 决定什么时候取得状态、推进下一个周期，**System** 把它们连成一张图。`#[roplat::system]` 在编译期把这张图转换成 Rust 异步代码。
+
+[安装并运行第一个程序](start/first-system.md){ .md-button .md-button--primary }
+[学习路线](start/roadmap.md){ .md-button }
+
 </div>
-
-**Roplat** 是一个 Rust 编写的机器人应用框架。它不把机器人程序组织成“若干运行时发现的节点和话题”，而是让你在代码中直接声明计算节点、节律域和数据流拓扑，由过程宏在编译期展开为确定的执行图。
-
-它适合这样的场景：
-
-- 你希望控制链路、感知管线或实验系统有明确的数据流和执行顺序。
-- 你不想为了简单周期任务手写 `loop`、`sleep`、`tokio::spawn` 和通道粘合代码。
-- 你需要在同一个系统里组合 Rust、C++、Python 节点，但不想长期维护手写 FFI。
-- 你希望消息类型、图拓扑、跨语言绑定和 IPC schema 尽早失败，而不是在真机实验时失败。
 
 ```rust
-#[roplat::system]
-async fn main() {
-    let mut source = SensorNode::new();
-    let mut filter = FilterNode::new();
-    let mut ctrl = ControllerNode::new();
-    let mut motor = MotorNode::new();
-    let mut timer = roplat::rhythm::SysTimer::new(std::time::Duration::from_millis(10));
-
-    timer >> {
-        source >> filter >> ctrl >> motor;
-    };
-}
+// 机械臂的控制节律每个周期给出状态，域内算出指令交回节律。
+&mut arm >> control.resources.0;
+control >> |state| {
+    state >> planner;
+    state >> servo.input.0;
+    planner >> servo.input.1;
+    servo
+};
 ```
 
-## 核心优势
+## 三个角色
 
-<div class="grid cards" markdown>
-
-- :material-graph-outline:{ .lg .middle } **代码即拓扑**
-
-    ---
-
-    用 `#[roplat::system]` 和 `>>` 描述节点连接。图结构留在代码里，而不是散落在回调、线程和运行时注册表中。
-
-- :material-clock-fast:{ .lg .middle } **节律域驱动**
-
-    ---
-
-    周期、事件、计数、迭代和回放都由 Rhythm 表达。业务代码不需要手写调度循环。
-
-- :material-shield-check:{ .lg .middle } **编译期检查**
-
-    ---
-
-    节点输入输出、消息布局、系统拓扑、部分死锁风险和跨语言绑定尽可能在构建阶段暴露。
-
-- :material-translate:{ .lg .middle } **多语言组合**
-
-    ---
-
-    Rust 原生节点是基础；C++ 与 Python 节点通过 `roplat_build` 和语言桥接生成 glue code。
-
-</div>
-
-## 三个核心抽象
-
-```mermaid
-flowchart LR
-    Rhythm["Rhythm<br>什么时候运行"] --> System["System DSL<br>谁连接谁"]
-    NodeA["Node<br>做一次计算"] --> System
-    System --> Codegen["Compile-time expansion"]
-    Codegen --> Runtime["Deterministic async execution"]
-```
-
-| 抽象 | 负责什么 | 你应该写什么 |
+| 角色 | 负责什么 | 你写什么 |
 |---|---|---|
-| `Node` | 单次输入到输出的计算 | 控制器、滤波器、驱动适配器、感知处理 |
-| `Rhythm` | 执行节奏和触发源 | 定时器、事件触发、计数测试、离线迭代、回放 |
-| `System` | 节点拓扑和数据流 | `timer >> { sensor >> filter >> ctrl; };` |
+| Node | 一次输入到一次输出：滤波、控制律、规划、一次设备动作 | 实现 `Node::process` |
+| Rhythm | 一个执行域怎样推进：何时开始一个周期、何时结束整次运行 | 选用内置节律，或实现 `Rhythm::drive` |
+| System | 谁依赖谁、哪些对象属于哪一层、设备借给谁 | 在 `#[roplat::system]` 函数里连线 |
 
-## 你从哪里开始
+应用作者用 System 描述结构，不手写调度循环、通道和对象归还；节点和节律作者实现各自的 trait，不需要知道自己被接在图的什么位置。
+
+## 从这里开始
 
 <div class="grid cards" markdown>
 
-- **第一次了解 Roplat**
+- **第一次使用**
 
-    [:octicons-arrow-right-24: 项目介绍](Guide/01%20Introduction.md)
+    安装工具链，运行一个完整的小程序，认识头段、图和尾段。
 
-- **马上写一个项目**
+    [安装与第一个程序 →](start/first-system.md)
 
-    [:octicons-arrow-right-24: 快速开始总览](QuickStart/00%20快速开始总览.md)
+- **按机器人任务学**
 
-- **理解 Node / Rhythm / System**
+    从节律的四个边界开始，逐步加入设备借用、分支、多层节律、停止与多设备。
 
-    [:octicons-arrow-right-24: 概念导读](Concepts/00%20概念导读.md)
+    [教程 →](tutorial/rhythm-boundaries.md)
 
-- **集成 C++ / Python / build.rs**
+- **理解原理**
 
-    [:octicons-arrow-right-24: 编译管线](Architecture/01%20Pipeline.md)
+    每个概念为什么这样设计，边界在哪里。
+
+    [概念 →](concepts/node.md)
+
+- **查语法和诊断**
+
+    连线写法、内置节律、常见编译错误和 0.4 迁移。
+
+    [参考 →](reference/syntax.md)
 
 </div>
 
-## 当前边界
+## 设计取向
 
-Roplat 的核心 Node / Rhythm / System、多语言桥接、IPC MVP、录制回放核心 API 已经可用。部分更高层接口仍在演进，例如 `#[system(record = ...)]` 风格的完整宏集成、更多本地 IPC 后端、以及 resource 子系统的重新启用。文档中会明确区分“推荐使用路径”和“内部/实验性能力”。
+- **设备决定自己的节拍。** 控制节律在周期开始取得机器人状态，域内算完直接把指令交回；不必先让定时器发消息、再由消息触发控制。
+- **进程内是编译期确定的静态图。** 节点、节律和连接在编译时可见；不同进程分别编译，经 IPC 连接。
+- **创建位置就是生命周期。** 跨周期保留的对象在外层创建，每个周期的状态在周期内创建。
+- **设备是借出的资源，不是消息。** 机械臂经 `&mut arm >> user.resources.0` 借给一次调用，用完即还，失败时也不会丢失。
+
+静态图不等于硬实时，也不能证明任意程序没有死锁；节点里的阻塞调用、外语运行时和操作系统调度仍然会影响时序。详见[支持范围与已知问题](reference/scope.md)。
+
+## 获取与许可
+
+roplat 发布在 [crates.io](https://crates.io/crates/roplat)，API 文档在 [docs.rs](https://docs.rs/roplat/0.5.0/roplat/)。许可证为 PolyForm Noncommercial 1.0.0，商业使用前请先阅读许可条款。
+
+给 AI 编程助手使用的技能集合见 [roplat-skills](https://github.com/Robot-Exp-Platform/roplat-skills)，用法见[与 AI 协作](reference/ai.md)。

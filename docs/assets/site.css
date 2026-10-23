@@ -1,0 +1,43 @@
+/* Reading width and a few quiet accents on top of Material's defaults. */
+.md-typeset {
+  line-height: 1.75;
+}
+
+.md-typeset table:not([class]) {
+  font-size: 0.72rem;
+}
+
+.md-typeset table:not([class]) th {
+  white-space: nowrap;
+}
+
+.md-typeset .hero {
+  margin: 1.2rem 0 1.6rem;
+}
+
+.md-typeset .hero p {
+  font-size: 0.95rem;
+  margin: 0.4rem 0;
+}
+
+.md-typeset .hero .md-button {
+  margin: 0.6rem 0.4rem 0 0;
+}
+
+.md-typeset .grid.cards > ul > li {
+  border-radius: 0.3rem;
+}
+
+.md-typeset pre > code {
+  font-size: 0.7rem;
+}
+
+/* Keep short syntax in the first column of reference tables on one line;
+   Material lets wide tables scroll inside their own frame. */
+.md-typeset td:first-child code {
+  white-space: nowrap;
+}
+
+.md-typeset td + td {
+  min-width: 10em;
+}

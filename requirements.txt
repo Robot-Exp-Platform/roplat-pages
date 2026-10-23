@@ -1,0 +1,6 @@
+# Versions used to build and check the site.
+mkdocs==1.6.1
+mkdocs-material==9.7.7
+pymdown-extensions==11.0.2
+Markdown==3.10.3
+Pygments==2.20.0

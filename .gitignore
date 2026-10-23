@@ -1,1 +1,6 @@
 .DS_Store
+/site/
+/.cache/
+/.venv/
+__pycache__/
+target/
