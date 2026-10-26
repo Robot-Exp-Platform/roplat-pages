@@ -1,0 +1,102 @@
+{
+  "roplat": "0.5.0 (crates.io)",
+  "rustc": "rustc 1.100.0-nightly (67eda617e 2026-09-10)",
+  "programs": {
+    "first-system": {
+      "page": "docs/start/first-system.md",
+      "source_sha256": "6d0c31d51b87989fa90e6d15ea231e1f7da11f3be518fd4a9e9e8b5aafb4cea8",
+      "output_checked": true
+    },
+    "branches": {
+      "page": "docs/tutorial/branches.md",
+      "source_sha256": "88907cdd7141fc6d2102cfd9069584314821d203616e0204a9ff916e4d5a3bad",
+      "output_checked": true
+    },
+    "events": {
+      "page": "docs/tutorial/events.md",
+      "source_sha256": "49ce43f1bcc8f2edb893b02ba672f56095b44eef1a0c568166da2f4de30342db",
+      "output_checked": true
+    },
+    "hard": {
+      "page": "docs/tutorial/hard.md",
+      "source_sha256": "e83e29dddb2bf71f58b63d7d3865e37f64dd165cad274dca93419b8fd0bd6ea1",
+      "output_checked": true
+    },
+    "layers": {
+      "page": "docs/tutorial/layers.md",
+      "source_sha256": "fbb7a43a0950948e664aaaaa9be3e274c460774c71371d2321817f4b4b5f45e4",
+      "output_checked": true
+    },
+    "resources": {
+      "page": "docs/tutorial/resources.md",
+      "source_sha256": "c20beff660250f0b92eb179567f84be1d269b840ea68b3052ee0647f00e3b315",
+      "output_checked": true
+    },
+    "rhythm-boundaries": {
+      "page": "docs/tutorial/rhythm-boundaries.md",
+      "source_sha256": "5addf6bbcda02787209eb1804a197efc89d8f3c3118e71893a4c2a14c21e61e6",
+      "output_checked": true
+    },
+    "sideband": {
+      "page": "docs/tutorial/sideband.md",
+      "source_sha256": "ab939c2e5fda9f889053b80d9162bb690254c7cf5922ab5a8dc2062fa4fdabb5",
+      "output_checked": true
+    },
+    "stop-and-failure": {
+      "page": "docs/tutorial/stop-and-failure.md",
+      "source_sha256": "b88645beb29583f77600158b71c5d8008315204d9082fc99c3a89f748377f0ac",
+      "output_checked": true
+    }
+  },
+  "checks": [
+    {
+      "name": "build",
+      "returncode": 0
+    },
+    {
+      "name": "first-system",
+      "returncode": 0
+    },
+    {
+      "name": "branches",
+      "returncode": 0
+    },
+    {
+      "name": "events",
+      "returncode": 0
+    },
+    {
+      "name": "hard",
+      "returncode": 0
+    },
+    {
+      "name": "layers",
+      "returncode": 0
+    },
+    {
+      "name": "resources",
+      "returncode": 0
+    },
+    {
+      "name": "rhythm-boundaries",
+      "returncode": 0
+    },
+    {
+      "name": "sideband",
+      "returncode": 0
+    },
+    {
+      "name": "stop-and-failure",
+      "returncode": 0
+    },
+    {
+      "name": "clippy",
+      "returncode": 0
+    },
+    {
+      "name": "fmt",
+      "returncode": 0
+    }
+  ],
+  "lock_sha256": "ec7de12341784ccd0cdbd10aa596207a4ac50727772866c97fa928107e157e27"
+}
