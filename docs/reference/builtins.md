@@ -36,14 +36,11 @@
 
 ## 内置节点
 
-都在 `roplat::node` 下，适合示例、测试和简单的数据处理。
+都在 `roplat::node` 下，适合示例、测试和简单的数据处理。算术、逻辑、比较、位运算与滤波节点已从核心删除：一行能写出的计算用 `node::map` 直接写在 System 图里，滤波器算法在 roplat_control 的 `filter` 模块（`LowPass`、`CartesianLowPass`），需要节点形态时用 `node::map` 包一层。
 
 | 模块 | 节点 |
 |---|---|
 | `node::map` | 闭包节点 `map(|x| …)` |
-| `node::arithmetic` | `OpAdd`、`OpSub`、`OpMul`、`OpDiv`、`OpRem`、`OpNeg`、`OpAbs`、`OpMax`、`OpMin`、`OpPow`、`OpSqrt` |
-| `node::logic` | `LogicAnd`、`LogicOr`、`LogicXor`、`LogicNot`、`LogicNand`、`LogicNor`；`Equal`、`NotEqual`、`Greater`、`GreaterEqual`、`Less`、`LessEqual`；按位运算与移位 |
-| `node::filter` | `MovingAverage`、`ExponentialMovingAverage`、`MedianFilter`、`RateLimiter`、`DeadzoneFilter`、`LowPassFilter` |
 | `node::io` | `stdout_writer`、`stderr_writer`、`stdout_display_writer`、`stdout_debug_writer` 等写入节点 |
 
-构造参数与输入输出类型见 [docs.rs](https://docs.rs/roplat/0.5.0/roplat/node/index.html)。
+构造参数与输入输出类型见 [docs.rs](https://docs.rs/roplat/latest/roplat/node/index.html)。
